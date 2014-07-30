@@ -75,21 +75,27 @@ class GameViewController: UIViewController {
     var scene: GameScene!
     var level: GameLevel!
     var currentLevel: Int = 0
-    
-    var movesLeft: Int = 0
+    var timer: NSTimer!
+    var timeLeft: Double = 0.0
+    let timerInterval: NSTimeInterval = 0.1
     var score: Int = 0
+    var isPaused: Bool = false
+    var totalScore : Int = 0
     
     var backgroundMusic: AVAudioPlayer!
     
     @IBOutlet var targetLabel: UILabel!
-    @IBOutlet var movesLabel: UILabel!
+    @IBOutlet var timerLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var gameOverPanel: UIImageView!
+    @IBOutlet var middleUIViewPanel: UIImageView!
     @IBOutlet var menuButton: UIButton!
+    @IBOutlet var scorePanel: UIImageView!
+    @IBOutlet var highScoreLabel: UILabel!
     
     @IBAction func menuButtonPressed(AnyObject) {
         menuButton.showsTouchWhenHighlighted = true
+        //isPaused = true
     }
 //    @IBOutlet var shuffleButton: UIButton!
 //    
@@ -132,9 +138,10 @@ class GameViewController: UIViewController {
         let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
         backgroundMusic = AVAudioPlayer(contentsOfURL: url, error: nil)
         backgroundMusic.numberOfLoops = -1
-        backgroundMusic.play()
+        //backgroundMusic.play()
         
         beginGame()
+        
     }
     
     func beginGame() {
@@ -156,17 +163,19 @@ class GameViewController: UIViewController {
         
         scene.swipeHandler = handleSwipe
         
-        gameOverPanel.hidden = true
+        middleUIViewPanel.hidden = true
+        
         //shuffleButton.hidden = true
         
         
-        movesLeft = level.timeLeft
+        timeLeft += Double(level.timeLeft)
         score = 0
         updateLabels()
         level.resetComboMultiplier()
         
         scene.animateBeginGame() {
             //self.shuffleButton.hidden = false
+            self.countDownTimer()
         }
         
     }
@@ -179,8 +188,8 @@ class GameViewController: UIViewController {
     
     func handleSwipe(swap: Swap) {
         view.userInteractionEnabled = false
-        
         if level.isPossibleSwap(swap) {
+            isPaused = true
             level.performSwap(swap)
             scene.animateSwap(swap, completion: handleMatches)
         } else {
@@ -199,6 +208,7 @@ class GameViewController: UIViewController {
         scene.animateMatchedPolis(chains) {
             for chain in chains {
                 self.score += chain.score
+                self.totalScore += chain.score
             }
             self.updateLabels()
             let columns = self.level.fillHoles()
@@ -212,53 +222,83 @@ class GameViewController: UIViewController {
     }
     
     func beginNextTurn() {
+        isPaused = false
         level.resetComboMultiplier()
         level.detectPossibleSwaps()
         view.userInteractionEnabled = true
-        decrementMoves()
+        updateGameInfo()
     }
     
     func updateLabels() {
         targetLabel.text = NSString(format: "%ld", level.targetScore)
-        //movesLabel.text = NSString(format: "%ld", movesLeft)
         scoreLabel.text = NSString(format: "%ld", score)
         levelLabel.text = NSString(format: "%ld",currentLevel + 1)
+        highScoreLabel.text = NSString(format: "%ld", totalScore)
     }
     
-    func decrementMoves() {
-        --movesLeft
+    func updateGameInfo() {
         updateLabels()
-        
-        if score >= level.targetScore {
-            gameOverPanel.animationImages = [UIImage(named: "LevelComplete"), UIImage(named: "LevelComplete-Highlighted")]
-            ++currentLevel
-            showGameOver()
-        } else if movesLeft == 0 {
-            gameOverPanel.image = UIImage(named: "GameOver")
-            currentLevel = 0
-            showGameOver()
+        if self.score >= level.targetScore {
+            levelUp()
+            beginGame()
+        } else if timeLeft <= 0 {
+            gameOver()
         }
     }
     
-    func showGameOver() {
-        gameOverPanel.hidden = false
+    func levelUp() {
+        ++currentLevel
+        score = 0
+        showLevelUp()
+    }
+    
+    func gameOver() {
+        totalScore += score
+        currentLevel = 0
+        showGameOver()
+    }
+    
+    func showLevelUp() {
+        isPaused = true
+        middleUIViewPanel.animationImages = [UIImage(named: "LevelComplete"), UIImage(named: "LevelComplete-Highlighted")]
+        middleUIViewPanel.animationDuration = 0.5
+        middleUIViewPanel.hidden = false
+        middleUIViewPanel.startAnimating()
         scene.userInteractionEnabled = false
         //shuffleButton.hidden = true
         
         scene.animateGameOver() {
-            self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideGameOver")
+            self.hideMiddleImageViewPanel()
+            //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideMiddleImageViewPanel")
+            //self.view.addGestureRecognizer(self.tapGestureRecognizer)
+            self.isPaused = false
+            self.middleUIViewPanel.stopAnimating()
+        }
+    }
+    
+    func showGameOver() {
+        scorePanel.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
+        scorePanel.animationDuration = 0.5
+        scorePanel.startAnimating()
+        scoreLabel.text = NSString(format: "%ld", totalScore)
+        timerLabel.hidden = true
+        middleUIViewPanel.image = UIImage(named: "GameOver")
+        middleUIViewPanel.hidden = false
+        scene.userInteractionEnabled = false
+        //shuffleButton.hidden = true
+        
+        scene.animateGameOver() {
+            self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "")
             self.view.addGestureRecognizer(self.tapGestureRecognizer)
         }
     }
     
-    func hideGameOver() {
+    func hideMiddleImageViewPanel() {
         view.removeGestureRecognizer(tapGestureRecognizer)
         tapGestureRecognizer = nil
         
-        gameOverPanel.hidden = true
+        middleUIViewPanel.hidden = true
         scene.userInteractionEnabled = true
-        
-        beginGame()
     }
     
     func authenticateLocalPlayer() {
@@ -266,6 +306,28 @@ class GameViewController: UIViewController {
         localPlayer.authenticateHandler = {(viewController, error) -> Void in
             if viewController {
                 self.presentViewController(viewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func countDownTimer() {
+        if !timer {
+         timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
+        }
+    }
+
+    func updateTimerLabel () {
+        if (!isPaused) {
+            timeLeft = timeLeft - Double(timerInterval)
+            if timeLeft >= 10 {
+                timerLabel.text = NSString(format: "%ld", Int(timeLeft))
+            } else {
+                timerLabel.text = NSString(format: "%.1f", timeLeft)
+            }
+            if timeLeft <= 0 {
+                isPaused = true
+                timer.invalidate()
+                gameOver()
             }
         }
     }

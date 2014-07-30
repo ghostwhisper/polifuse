@@ -15,7 +15,7 @@ class GameLevel {
     private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
     private var possibleSwaps = SetCollection<Swap>()
     let targetScore: Int!
-    let timeLeft: Int!
+    let timeLeft: Float!
     var comboMultiplier: Int = 0  // private
     
     init(filename: String) {
@@ -40,7 +40,7 @@ class GameLevel {
                     }
                 }
                 targetScore = (dictionary["targetScore"] as NSNumber).integerValue
-                timeLeft = (dictionary["moves"] as NSNumber).integerValue
+                timeLeft = (dictionary["timeLeft"] as NSNumber).floatValue
             }
             
         }

@@ -391,7 +391,7 @@ class GameScene: SKScene {
     }
     
     func animateGameOver(completion: () -> ()) {
-        let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
+        let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.5)
         action.timingMode = .EaseIn
         gameLayer.runAction(action, completion: completion)
     }
