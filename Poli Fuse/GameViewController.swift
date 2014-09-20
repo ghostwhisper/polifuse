@@ -10,74 +10,19 @@ import UIKit
 import SpriteKit
 import AVFoundation
 import GameKit
-
-extension SKNode {
-    class func unarchiveFromFile(file : NSString) -> SKNode? {
-        
-        let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks")
-        
-        var sceneData = NSData.dataWithContentsOfFile(path, options: .DataReadingMappedIfSafe, error: nil)
-        var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-        
-        archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-        let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as GameScene
-        archiver.finishDecoding()
-        return scene
-    }
-}
-
-//class GameViewController: UIViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-//            // Configure the view.
-//            let skView = self.view as SKView
-//            skView.showsFPS = true
-//            skView.showsNodeCount = true
-//            
-//            /* Sprite Kit applies additional optimizations to improve rendering performance */
-//            skView.ignoresSiblingOrder = true
-//            
-//            /* Set the scale mode to scale to fit the window */
-//            scene.scaleMode = .AspectFill
-//            
-//            skView.presentScene(scene)
-//        }
-//    }
-//
-//    override func shouldAutorotate() -> Bool {
-//        return true
-//    }
-//
-//    override func supportedInterfaceOrientations() -> Int {
-//        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-//            return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
-//        } else {
-//            return Int(UIInterfaceOrientationMask.All.toRaw())
-//        }
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Release any cached data, images, etc that aren't in use.
-//    }
-//
-//    override func prefersStatusBarHidden() -> Bool {
-//        return true
-//    }
-//}
+//import iAd
 
 
-
-class GameViewController: UIViewController {
+var ifResumeGame = false
+class GameViewController: UIViewController{// , ADBannerViewDelegate{
+    let timerInterval: NSTimeInterval = 0.1
+    
     var scene: GameScene!
     var level: GameLevel!
     var currentLevel: Int = 0
     var timer: NSTimer!
     var timeLeft: Double = 0.0
-    let timerInterval: NSTimeInterval = 0.1
+    var userCloseAds = false
     var score: Int = 0
     var isPaused: Bool = false
     var totalScore : Int = 0
@@ -88,21 +33,37 @@ class GameViewController: UIViewController {
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var levelLabel: UILabel!
-    @IBOutlet var middleUIViewPanel: UIImageView!
-    @IBOutlet var menuButton: UIButton!
+    @IBOutlet weak var highScore: UILabel!
+    
+    @IBOutlet weak var timerImage: UIImageView!
     @IBOutlet var scorePanel: UIImageView!
-    @IBOutlet var highScoreLabel: UILabel!
+    @IBOutlet var middleUIViewPanel: UIImageView!
+    @IBOutlet var resumeButton: UIImageView!
+    @IBOutlet weak var highScoreImage: UIImageView!
+    
+    //@IBOutlet var iAdBanner: ADBannerView!
+    
+    
+    @IBOutlet var menuButton: UIButton!
+    @IBOutlet var closeAdsBannerButton: UIButton!
+    @IBOutlet var exitButton: UIButton!
+    
     
     @IBAction func menuButtonPressed(AnyObject) {
-        menuButton.showsTouchWhenHighlighted = true
-        //isPaused = true
+        //        menuButton.showsTouchWhenHighlighted = true
+        pauseGame()
     }
-//    @IBOutlet var shuffleButton: UIButton!
-//    
-//    @IBAction func shuffleButtonPressed(AnyObject) {
-//        shuffle()
-//        decrementMoves()
-//    }
+    
+    @IBAction func closeAdsBannerButtonPressed(AnyObject) {
+//        iAdBanner.hidden = true
+        closeAdsBannerButton.hidden = true
+        userCloseAds = true
+    }
+    
+    @IBAction func exitButtonPressed(AnyObject) {
+        gameOver()
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -112,7 +73,7 @@ class GameViewController: UIViewController {
     }
     
     override func shouldAutorotate() -> Bool {
-        return true
+        return false
     }
     
     override func supportedInterfaceOrientations() -> Int {
@@ -121,15 +82,23 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //println(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
+        //setup iAd
+//        iAdBanner.delegate = self
+//        iAdBanner.hidden = false
+        closeAdsBannerButton.hidden = true
         
         // Configure the view.
         let skView = view as SKView
         skView.multipleTouchEnabled = false
         
+        exitButton.hidden = true
+        highScore.hidden = true
+        highScoreImage.hidden = true
+        
         // Create and configure the scene.
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
-        
         
         // Present the scene.
         skView.presentScene(scene)
@@ -140,21 +109,37 @@ class GameViewController: UIViewController {
         backgroundMusic.numberOfLoops = -1
         //backgroundMusic.play()
         
+        if (ifResumeGame) {
+            let lastGameStatus:Dictionary<String, String> = AppDelegate.loadLocalLastLevel()!
+            if (!lastGameStatus.isEmpty) {
+                //lastLevelStatus = ["scores": scores, "level": level, "timeLeft": timeLeft]
+                var result = NSString(string: lastGameStatus["level"]!)
+                currentLevel = result.integerValue
+                result = NSString(string: lastGameStatus["timeLeft"]!)
+                timeLeft = result.doubleValue
+                result = NSString(string: lastGameStatus["scores"]!)
+                totalScore = result.integerValue
+            }
+            ifResumeGame = false
+        }
+
+        
         beginGame()
         
     }
     
     func beginGame() {
-        
         var fileName: String
         fileName = NSString(format: "Level_%ld", currentLevel)
         let filePath = NSBundle.mainBundle().pathForResource(fileName, ofType:"json")
         
-        if (NSFileManager.defaultManager() .fileExistsAtPath(filePath)) {
+        if (NSFileManager.defaultManager() .fileExistsAtPath(filePath!)) {
             level = GameLevel(filename: NSString(format: "Level_%ld", currentLevel))
         } else {
-            showGameOver()
+            showFinishAllLevels()
         }
+        
+        resetGame()
         
         shuffle()
         
@@ -163,21 +148,15 @@ class GameViewController: UIViewController {
         
         scene.swipeHandler = handleSwipe
         
-        middleUIViewPanel.hidden = true
-        
         //shuffleButton.hidden = true
         
-        
         timeLeft += Double(level.timeLeft)
-        score = 0
         updateLabels()
-        level.resetComboMultiplier()
         
-        scene.animateBeginGame() {
+        scene.animateGameSceneIn() {
             //self.shuffleButton.hidden = false
             self.countDownTimer()
         }
-        
     }
     
     func shuffle() {
@@ -187,6 +166,7 @@ class GameViewController: UIViewController {
     }
     
     func handleSwipe(swap: Swap) {
+        isPaused = false
         view.userInteractionEnabled = false
         if level.isPossibleSwap(swap) {
             isPaused = true
@@ -227,20 +207,19 @@ class GameViewController: UIViewController {
         level.detectPossibleSwaps()
         view.userInteractionEnabled = true
         updateGameInfo()
+        updateLocalHighScore()
     }
     
     func updateLabels() {
         targetLabel.text = NSString(format: "%ld", level.targetScore)
         scoreLabel.text = NSString(format: "%ld", score)
         levelLabel.text = NSString(format: "%ld",currentLevel + 1)
-        highScoreLabel.text = NSString(format: "%ld", totalScore)
     }
     
     func updateGameInfo() {
         updateLabels()
         if self.score >= level.targetScore {
             levelUp()
-            beginGame()
         } else if timeLeft <= 0 {
             gameOver()
         }
@@ -248,17 +227,40 @@ class GameViewController: UIViewController {
     
     func levelUp() {
         ++currentLevel
-        score = 0
-        showLevelUp()
+        AppDelegate.saveLastLevelStatus(totalScore, level: currentLevel, timeLeft : timeLeft)
+        showLevelUp(){
+            self.resetGame()
+            self.beginGame()
+        }
     }
     
     func gameOver() {
-        totalScore += score
-        currentLevel = 0
         showGameOver()
+        isPaused = true
+        timer = nil
+        AppDelegate.updateScoreForGameCenterUser(totalScore, currentLevel: currentLevel)
+        currentLevel = 0
+        score = 0
+        totalScore = 0
+        timeLeft = 0
+        userCloseAds = false
     }
     
-    func showLevelUp() {
+    func showFinishAllLevels() {
+        // need to finish
+    }
+    
+    func resetGame() {
+        hideMiddleImageViewPanel()
+        timerLabel.hidden = false
+        scorePanel.stopAnimating()
+        scorePanel.image = UIImage(named: "FlyingPoli")
+        isPaused = false
+        score = 0
+        level.resetComboMultiplier()
+    }
+    
+    func showLevelUp(completion: () -> ()) {
         isPaused = true
         middleUIViewPanel.animationImages = [UIImage(named: "LevelComplete"), UIImage(named: "LevelComplete-Highlighted")]
         middleUIViewPanel.animationDuration = 0.5
@@ -267,69 +269,163 @@ class GameViewController: UIViewController {
         scene.userInteractionEnabled = false
         //shuffleButton.hidden = true
         
-        scene.animateGameOver() {
-            self.hideMiddleImageViewPanel()
-            //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideMiddleImageViewPanel")
-            //self.view.addGestureRecognizer(self.tapGestureRecognizer)
-            self.isPaused = false
-            self.middleUIViewPanel.stopAnimating()
-        }
+        scene.animateGameSceneOut(completion)
     }
     
     func showGameOver() {
-        scorePanel.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
-        scorePanel.animationDuration = 0.5
-        scorePanel.startAnimating()
-        scoreLabel.text = NSString(format: "%ld", totalScore)
+        highScoreImage.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
+        highScoreImage.animationDuration = 0.5
+        highScoreImage.startAnimating()
+        highScoreImage.hidden = false
+        
+        highScore.text = String(totalScore)
+        highScore.hidden = false
+
         timerLabel.hidden = true
+        exitButton.hidden = false
+        scoreLabel.hidden = true
+        
         middleUIViewPanel.image = UIImage(named: "GameOver")
         middleUIViewPanel.hidden = false
-        scene.userInteractionEnabled = false
-        //shuffleButton.hidden = true
+        //scene.userInteractionEnabled = false
+        menuButton.userInteractionEnabled = false
         
-        scene.animateGameOver() {
-            self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "")
-            self.view.addGestureRecognizer(self.tapGestureRecognizer)
+        scene.animateGameSceneOut() {
+            //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "beginGame")
+            //self.view.addGestureRecognizer(self.tapGestureRecognizer)
         }
+        updateLabels()
     }
     
+    
     func hideMiddleImageViewPanel() {
-        view.removeGestureRecognizer(tapGestureRecognizer)
-        tapGestureRecognizer = nil
+        //view.removeGestureRecognizer(tapGestureRecognizer)
+        //tapGestureRecognizer = nil
         
         middleUIViewPanel.hidden = true
         scene.userInteractionEnabled = true
+        middleUIViewPanel.stopAnimating()
     }
     
-    func authenticateLocalPlayer() {
-        var localPlayer = GKLocalPlayer()
-        localPlayer.authenticateHandler = {(viewController, error) -> Void in
-            if viewController {
-                self.presentViewController(viewController, animated: true, completion: nil)
-            }
-        }
-    }
+    
     
     func countDownTimer() {
-        if !timer {
-         timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
+        if timer == nil {
+            timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
         }
     }
-
+    
+    func pauseGame() {
+        isPaused = true
+        menuButton.userInteractionEnabled = false
+        scene.animateGameSceneOut() {
+            self.showPauseMenu()
+        }
+    }
+    
+    func showPauseMenu() {
+        resumeButton.hidden = false
+        resumeButton.userInteractionEnabled = true
+        resumeButton.animationImages = [UIImage(named: "Resume"), UIImage(named: "Resume-Highlighted")]
+        resumeButton.animationDuration = 0.7
+        resumeButton.startAnimating()
+        resumeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "resumeGame"))
+        
+        exitButton.hidden = false
+        
+    }
+    
+    func resumeGame() {
+        scene.userInteractionEnabled = true
+        middleUIViewPanel.hidden = true
+        resumeButton.hidden = true
+        exitButton.hidden = true
+        resumeButton.stopAnimating()
+        scene.animateGameSceneIn() {
+            self.isPaused = false
+            self.menuButton.userInteractionEnabled = true
+        }
+    }
+    
+//    func showAdBanner() {
+//        iAdBanner.hidden = false
+//        if closeAdsBannerButton.hidden {
+//            closeAdsBannerButton.hidden = false
+//        }
+//    }
+//    
+//    func hideAdBanner() {
+//        iAdBanner.hidden = true
+//        if !closeAdsBannerButton.hidden {
+//            closeAdsBannerButton.hidden = true
+//        }
+//    }
+    
     func updateTimerLabel () {
         if (!isPaused) {
+            //            if iAdBanner.bannerViewActionInProgress {
+            //                pauseGame()
+            //                return
+            //            }
             timeLeft = timeLeft - Double(timerInterval)
-            if timeLeft >= 10 {
-                timerLabel.text = NSString(format: "%ld", Int(timeLeft))
-            } else {
-                timerLabel.text = NSString(format: "%.1f", timeLeft)
-            }
-            if timeLeft <= 0 {
+            //if timeLeft >= 10 {
+            let minutes:Int = Int(timeLeft)/60
+            let seconds:Int = Int(timeLeft) - minutes*60
+            timerLabel.text = "\(twoDigitString(minutes)):\(twoDigitString(seconds))"
+            //} else {
+            //    timerLabel.text = NSString(format: "%.1f", timeLeft)
+            //}
+            if timeLeft <= 0.1 {
                 isPaused = true
                 timer.invalidate()
+                timer = nil
                 gameOver()
             }
         }
     }
     
+//    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+//        if !(banner.hidden) {
+//            banner.hidden = true
+//        }
+//    }
+//    
+//    func bannerViewDidLoadAd(banner: ADBannerView!) {
+//        if banner.hidden{
+//            banner.hidden = false
+//        }
+//    }
+    
+    class func setIsResume(resume : Bool) {
+        ifResumeGame = resume
+    }
+    
+    func updateLocalHighScore(){
+        var playerID = AppDelegate.getPlayerId()
+        
+        var existedRecord = NSUserDefaults.standardUserDefaults().dataForKey("highScore_\(playerID)")
+        if (existedRecord != nil) {
+            var result = NSKeyedUnarchiver.unarchiveObjectWithData(existedRecord!) as NSDictionary
+            var old_score = result["scores"]! as Int
+            if (old_score < totalScore) {
+                var highScore = ["scores": totalScore, "level": currentLevel] as NSDictionary
+                var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
+                NSUserDefaults.standardUserDefaults().setObject(data, forKey: "highScore_\(playerID)")
+            }
+        } else {
+            var highScore = ["scores": totalScore, "level": currentLevel] as NSDictionary
+            var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "highScore_\(playerID)")
+        }
+    }
+    
+    private func twoDigitString(number : Int) -> String {
+        if (number == 0) {
+            return "00"
+        }
+        if (number / 10 == 0) {
+            return "0\(number)"
+        }
+        return String(number);
+    }
 }

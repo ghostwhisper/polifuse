@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Swift
 
-class SetCollection<T: Hashable>: Sequence, Printable {
+class SetCollection<T: Hashable>: SequenceType, Printable {
     var dictionary = Dictionary<T, Bool>()  // private
     
     func addElement(newElement: T) {

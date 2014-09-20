@@ -33,9 +33,7 @@ class GameScene: SKScene {
     let fallingPoliSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
     let addPoliSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
     
-    init(size: CGSize) {
-        super.init(size: size)
-        
+    override func didMoveToView(view: SKView) {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         let background = SKSpriteNode(imageNamed: "Background")
@@ -47,7 +45,7 @@ class GameScene: SKScene {
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
-            y: -TileHeight * CGFloat(NumRows) / 1.4)
+            y: -TileHeight * CGFloat(NumRows) / 1.8)
         
         tilesLayer.position = layerPosition
         gameLayer.addChild(tilesLayer)
@@ -117,14 +115,14 @@ class GameScene: SKScene {
         
         for row in 0...NumRows {
             for column in 0...NumColumns {
-                let topLeft     = (column > 0) && (row < NumRows)
-                    && level.tileAtColumn(column - 1, row: row)
-                let bottomLeft  = (column > 0) && (row > 0)
-                    && level.tileAtColumn(column - 1, row: row - 1)
-                let topRight    = (column < NumColumns) && (row < NumRows)
-                    && level.tileAtColumn(column, row: row)
-                let bottomRight = (column < NumColumns) && (row > 0)
-                    && level.tileAtColumn(column, row: row - 1)
+                let topLeft     = ((column > 0) && (row < NumRows)
+                    && level.tileAtColumn(column - 1, row: row) != nil)
+                let bottomLeft  = ((column > 0) && (row > 0)
+                    && level.tileAtColumn(column - 1, row: row - 1) != nil)
+                let topRight    = ((column < NumColumns) && (row < NumRows)
+                    && level.tileAtColumn(column, row: row) != nil)
+                let bottomRight = ((column < NumColumns) && (row > 0)
+                    && level.tileAtColumn(column, row: row - 1) != nil)
                 
                 // The tiles are named from 0 to 15, according to the bitmask that is
                 // made by combining these four values.
@@ -144,7 +142,7 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         // 1
         let touch = touches.anyObject() as UITouch
         let location = touch.locationInNode(polisLayer)
@@ -162,7 +160,7 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         // 1
         if swipeFromColumn == nil { return }
         
@@ -195,7 +193,7 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         if selectionSprite.parent != nil && swipeFromColumn != nil {
             hideSelectionIndicator()
         }
@@ -293,7 +291,7 @@ class GameScene: SKScene {
             for poli in chain.poliList {
                 if let sprite = poli.sprite {
                     if sprite.actionForKey("removing") == nil {
-                        let scaleAction = SKAction.scaleTo(0.1, duration: 0.3)
+                        let scaleAction = SKAction.scaleTo(0.1, duration: 0.5)
                         scaleAction.timingMode = .EaseOut
                         sprite.runAction(SKAction.sequence([scaleAction, SKAction.removeFromParent()]),
                             withKey:"removing")
@@ -383,6 +381,7 @@ class GameScene: SKScene {
         scoreLabel.text = NSString(format: "%ld", chain.score)
         scoreLabel.position = centerPosition
         scoreLabel.zPosition = 300
+        scoreLabel.fontColor = UIColor.blackColor()
         polisLayer.addChild(scoreLabel)
         
         let moveAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.7)
@@ -390,13 +389,13 @@ class GameScene: SKScene {
         scoreLabel.runAction(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
     }
     
-    func animateGameOver(completion: () -> ()) {
+    func animateGameSceneOut(completion: () -> ()) {
         let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.5)
         action.timingMode = .EaseIn
         gameLayer.runAction(action, completion: completion)
     }
     
-    func animateBeginGame(completion: () -> ()) {
+    func animateGameSceneIn(completion: () -> ()) {
         gameLayer.hidden = false
         gameLayer.position = CGPoint(x: 0, y: size.height)
         let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
@@ -410,36 +409,6 @@ class GameScene: SKScene {
         maskLayer.removeAllChildren()
     }
     
-    //    override func didMoveToView(view: SKView) {
-    //        /* Setup your scene here */
-    //        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-    //        myLabel.text = "Hello, World!";
-    //        myLabel.fontSize = 65;
-    //        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-    //
-    //        self.addChild(myLabel)
-    //    }
-    //
-    //    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-    //        /* Called when a touch begins */
-    //
-    //        for touch: AnyObject in touches {
-    //            let location = touch.locationInNode(self)
-    //
-    //            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-    //
-    //            sprite.xScale = 0.5
-    //            sprite.yScale = 0.5
-    //            sprite.position = location
-    //
-    //            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-    //
-    //            sprite.runAction(SKAction.repeatActionForever(action))
-    //
-    //            self.addChild(sprite)
-    //        }
-    //    }
-    //
     //    override func update(currentTime: CFTimeInterval) {
     //        /* Called before each frame is rendered */
     //    }

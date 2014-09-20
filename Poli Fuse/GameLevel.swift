@@ -52,7 +52,7 @@ class GameLevel {
         // 1
         for row in 0..<NumRows {
             for column in 0..<NumColumns {
-                if tiles[column, row]{
+                if (tiles[column, row] != nil){
                     
                     // 2
                     var poliType: PoliType
@@ -128,7 +128,7 @@ class GameLevel {
         do {
             set = createInitialPolis()
             detectPossibleSwaps()
-            println("possible swaps: \(possibleSwaps)")
+            //println("possible swaps: \(possibleSwaps)")
         }
             while possibleSwaps.count == 0
         
@@ -276,7 +276,7 @@ class GameLevel {
             var array = Array<Poli>()
             for row in 0..<NumRows {
                 // 2
-                if tiles[column, row] && polis[column, row] == nil {
+                if tiles[column, row] != nil && polis[column, row] == nil {
                     // 3
                     for lookup in (row + 1)..<NumRows {
                         if let poli = polis[column, lookup] {
@@ -309,7 +309,7 @@ class GameLevel {
             // 1
             for var row = NumRows - 1; row >= 0 && polis[column, row] == nil; --row {
                 // 2
-                if tiles[column, row] {
+                if tiles[column, row] != nil {
                     // 3
                     var newPoliType: PoliType
                     do {
@@ -344,22 +344,22 @@ class GameLevel {
     
     func loadJsonFile(filename : String) -> Dictionary<String, AnyObject>?{
         let path = NSBundle.mainBundle().pathForResource(filename, ofType: "json")
-        if !path {
+        if path == nil {
             println("Could not find level file: \(filename)")
             return nil
         }
         
         var error: NSError?
-        let data: NSData? = NSData(contentsOfFile: path, options: NSDataReadingOptions(),
+        let data: NSData? = NSData(contentsOfFile: path!, options: NSDataReadingOptions(),
             error: &error)
-        if !data {
+        if data == nil {
             println("Could not load level file: \(filename), error: \(error!)")
             return nil
         }
         
-        let dictionary: AnyObject! = NSJSONSerialization.JSONObjectWithData(data,
+        let dictionary: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!,
             options: NSJSONReadingOptions(), error: &error)
-        if !dictionary {
+        if dictionary == nil{
             println("Level file '\(filename)' is not valid JSON: \(error!)")
             return nil
         }
