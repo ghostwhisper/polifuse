@@ -18,6 +18,9 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     var scoreboardButtonImageHighlighted = UIImage(named: "ScoreButton-Highlighted")
     var hasSavedData = false
     var leaderboardIdentifier = ""
+    var isAuthenticated = false
+    var localPlayer : GKLocalPlayer!
+
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -26,10 +29,11 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
     @IBOutlet weak var highScoreImage: UIImageView!
     @IBOutlet weak var logoImage: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // try to connect to game center
         gameCenterLoginWindow()
+        // try to connect to game center
         // Configure the view.
         let skView = view as SKView
         let scene = MenuScene(size: skView.bounds.size)
@@ -40,13 +44,17 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         skView.ignoresSiblingOrder = false
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .AspectFill
-        
         skView.presentScene(scene)
         
     }
     
     override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
         logoAnimationController()
+        displayAllButtons()
+    }
+    
+    private func displayAllButtons(){
         let lastGameStatus:Dictionary<String, String> = AppDelegate.loadLocalLastLevel()!
         button3 = initializeScoreButton(button3)
         if (lastGameStatus.isEmpty) {
@@ -61,10 +69,10 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
             hasSavedData = true
         }
         highScoreLabel.text = String(getTotalScore())
-
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         logoImage.stopAnimating()
     }
     
@@ -110,7 +118,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func gameCenterLoginWindow() {
-        var localPlayer = GKLocalPlayer.localPlayer()
+        localPlayer = GKLocalPlayer.localPlayer()
         if (localPlayer.authenticated) {
             isAuthenticated = true
             AppDelegate.setPlayerId(localPlayer.playerID)
@@ -121,19 +129,20 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
                     self.presentViewController(viewController, animated: true, completion: nil)
                 }
                 else {
-                    if localPlayer.authenticated {
-                        isAuthenticated = true
-                        localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
+                    if self.localPlayer.authenticated {
+                        self.isAuthenticated = true
+                        self.localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (leaderboardIdentifier : String!, error : NSError!) -> Void in
                             if error != nil {
                                 println(error.localizedDescription)
                             } else {
                                 self.leaderboardIdentifier = leaderboardIdentifier
                             }
                         })
-                        AppDelegate.setPlayerId(localPlayer.playerID)
-                        AppDelegate.syncLocalPlayerFromGC(localPlayer)
+                        AppDelegate.setPlayerId(self.localPlayer.playerID)
+                        AppDelegate.syncLocalPlayerFromGC(self.localPlayer)
+                        self.displayAllButtons()
                     } else {
-                        isAuthenticated = false
+                        self.isAuthenticated = false
                     }
                 }
             }
@@ -192,7 +201,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     func getTotalScore() -> Int{
         var playerID = AppDelegate.getPlayerId()
         var scores = 0
-        var existedRecord = NSUserDefaults.standardUserDefaults().dataForKey("highScore_\(playerID)")
+        var existedRecord = NSUserDefaults.standardUserDefaults().dataForKey(AppDelegate.escapeUserId("highScore_\(playerID)"))
         if (existedRecord != nil) {
             var result = NSKeyedUnarchiver.unarchiveObjectWithData(existedRecord!) as NSDictionary
             scores = result["scores"]! as Int
@@ -201,6 +210,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func initializePlayButton(button: UIButton) -> UIButton {
+        button.hidden = false
         return setButtonBackgroundImage(button, image: playButtonImage, highlightImage :playButtonImageHighlighted)
     }
     func initializeResumeButton(button: UIButton) -> UIButton {

@@ -207,7 +207,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         level.detectPossibleSwaps()
         view.userInteractionEnabled = true
         updateGameInfo()
-        updateLocalHighScore()
+        AppDelegate.updateLocalHighScore(totalScore, level: currentLevel)
     }
     
     func updateLabels() {
@@ -400,24 +400,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         ifResumeGame = resume
     }
     
-    func updateLocalHighScore(){
-        var playerID = AppDelegate.getPlayerId()
-        
-        var existedRecord = NSUserDefaults.standardUserDefaults().dataForKey("highScore_\(playerID)")
-        if (existedRecord != nil) {
-            var result = NSKeyedUnarchiver.unarchiveObjectWithData(existedRecord!) as NSDictionary
-            var old_score = result["scores"]! as Int
-            if (old_score < totalScore) {
-                var highScore = ["scores": totalScore, "level": currentLevel] as NSDictionary
-                var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
-                NSUserDefaults.standardUserDefaults().setObject(data, forKey: "highScore_\(playerID)")
-            }
-        } else {
-            var highScore = ["scores": totalScore, "level": currentLevel] as NSDictionary
-            var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
-            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "highScore_\(playerID)")
-        }
-    }
+
     
     private func twoDigitString(number : Int) -> String {
         if (number == 0) {

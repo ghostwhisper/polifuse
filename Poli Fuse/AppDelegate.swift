@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             lastLevelStatus = ["scores": String(scores), "level": String(level), "timeLeft": NSString(format: "%.2f", timeLeft)]
             var result = lastLevelStatus as NSDictionary
             var data = NSKeyedArchiver.archivedDataWithRootObject(result)
-            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "lastLevel_\(playerID)")
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: escapeUserId("lastLevel_\(playerID)"))
         }
     }
     
@@ -79,13 +79,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("saving lastlevelstatus for lastLevel_\(playerID)")
             var result = lastLevelStatus as NSDictionary
             var data = NSKeyedArchiver.archivedDataWithRootObject(result)
-            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "lastLevel_\(playerID)")
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: AppDelegate.escapeUserId("lastLevel_\(playerID)"))
         }
     }
     
     class func loadLocalLastLevel() -> Dictionary<String, String>?{
         var existedRecord = Dictionary<String, String>()
-        var result = NSUserDefaults.standardUserDefaults().dataForKey("lastLevel_\(playerID)")
+        var result = NSUserDefaults.standardUserDefaults().dataForKey(escapeUserId("lastLevel_\(playerID)"))
         if (result != nil) {
             existedRecord = NSKeyedUnarchiver.unarchiveObjectWithData(result!) as Dictionary
         }
@@ -93,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     class func deleteLocalLastLevelRecord() {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("lastLevel_\(playerID)")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(escapeUserId("lastLevel_\(playerID)"))
     }
     
     class func setPlayerId(playerId: String) {
@@ -138,6 +138,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    class func escapeUserId(userID:String) -> String {
+        let newUserID = userID.stringByReplacingOccurrencesOfString(":", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return newUserID
+    }
+    
     func syncUserDataToGC(totalScore : Int, currentLevel : Int){
         var leaderboardID = ""
         if isAuthenticated {
@@ -161,6 +166,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
+    }
+    
+    class func updateLocalHighScore(totalScore:Int, level:Int){
+        var playerID = AppDelegate.getPlayerId()
+        
+        var existedRecord = NSUserDefaults.standardUserDefaults().dataForKey(escapeUserId("highScore_\(playerID)"))
+        if (existedRecord != nil) {
+            var result = NSKeyedUnarchiver.unarchiveObjectWithData(existedRecord!) as NSDictionary
+            var old_score = result["scores"]! as Int
+            if (old_score < totalScore) {
+                var highScore = ["scores": totalScore, "level": level] as NSDictionary
+                var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
+                NSUserDefaults.standardUserDefaults().setObject(data, forKey: escapeUserId("highScore_\(playerID)"))
+            }
+        } else {
+            var highScore = ["scores": totalScore, "level": level] as NSDictionary
+            var data = NSKeyedArchiver.archivedDataWithRootObject(highScore)
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: escapeUserId("highScore_\(playerID)"))
+        }
     }
 
 }
