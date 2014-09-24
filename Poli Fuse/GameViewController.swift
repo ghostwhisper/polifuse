@@ -12,19 +12,21 @@ import AVFoundation
 import GameKit
 //import iAd
 
-
+var isPaused: Bool = false
 var ifResumeGame = false
+var timer:NSTimer = NSTimer()
+let timerInterval: NSTimeInterval = 1 // don't modify this value unless you know what you are doing.
 class GameViewController: UIViewController{// , ADBannerViewDelegate{
-    let timerInterval: NSTimeInterval = 0.1
+
     
     var scene: GameScene!
     var level: GameLevel!
     var currentLevel: Int = 0
-    var timer: NSTimer!
+
     var timeLeft: Double = 0.0
     var userCloseAds = false
     var score: Int = 0
-    var isPaused: Bool = false
+
     var totalScore : Int = 0
     
     var backgroundMusic: AVAudioPlayer!
@@ -87,7 +89,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //        iAdBanner.delegate = self
 //        iAdBanner.hidden = false
         closeAdsBannerButton.hidden = true
-        
         // Configure the view.
         let skView = view as SKView
         skView.multipleTouchEnabled = false
@@ -103,6 +104,10 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         // Present the scene.
         skView.presentScene(scene)
         
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
         // Load and start background music.
         let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
         backgroundMusic = AVAudioPlayer(contentsOfURL: url, error: nil)
@@ -122,10 +127,10 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             }
             ifResumeGame = false
         }
-
+        
         
         beginGame()
-        
+
     }
     
     func beginGame() {
@@ -152,6 +157,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         
         timeLeft += Double(level.timeLeft)
         updateLabels()
+        showTimerLabel()
         
         scene.animateGameSceneIn() {
             //self.shuffleButton.hidden = false
@@ -165,11 +171,15 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         scene.addSpritesForPoli(newPolis)
     }
     
+    class func setIfPause(ifPause:Bool) {
+        isPaused = ifPause
+    }
+    
     func handleSwipe(swap: Swap) {
-        isPaused = false
+        GameViewController.setIfPause(false)
         view.userInteractionEnabled = false
         if level.isPossibleSwap(swap) {
-            isPaused = true
+            GameViewController.setIfPause(true)
             level.performSwap(swap)
             scene.animateSwap(swap, completion: handleMatches)
         } else {
@@ -202,7 +212,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func beginNextTurn() {
-        isPaused = false
+        GameViewController.setIfPause(false)
         level.resetComboMultiplier()
         level.detectPossibleSwaps()
         view.userInteractionEnabled = true
@@ -236,14 +246,17 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     func gameOver() {
         showGameOver()
-        isPaused = true
-        timer = nil
+        GameViewController.setIfPause(true)
+        if (timer.valid) {
+            timer.invalidate()
+        }
         AppDelegate.updateScoreForGameCenterUser(totalScore, currentLevel: currentLevel)
         currentLevel = 0
         score = 0
         totalScore = 0
         timeLeft = 0
         userCloseAds = false
+        AppDelegate.deleteLocalLastLevelRecord()
     }
     
     func showFinishAllLevels() {
@@ -255,13 +268,13 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         timerLabel.hidden = false
         scorePanel.stopAnimating()
         scorePanel.image = UIImage(named: "FlyingPoli")
-        isPaused = false
+        GameViewController.setIfPause(false)
         score = 0
         level.resetComboMultiplier()
     }
     
     func showLevelUp(completion: () -> ()) {
-        isPaused = true
+        GameViewController.setIfPause(true)
         middleUIViewPanel.animationImages = [UIImage(named: "LevelComplete"), UIImage(named: "LevelComplete-Highlighted")]
         middleUIViewPanel.animationDuration = 0.5
         middleUIViewPanel.hidden = false
@@ -297,6 +310,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         updateLabels()
     }
     
+    func showTimerLabel() {
+        let minutes:Int = Int(timeLeft)/60
+        let seconds:Int = Int(timeLeft) - minutes*60
+        timerLabel.text = "\(twoDigitString(minutes)):\(twoDigitString(seconds))"
+    }
     
     func hideMiddleImageViewPanel() {
         //view.removeGestureRecognizer(tapGestureRecognizer)
@@ -310,13 +328,19 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     
     func countDownTimer() {
-        if timer == nil {
+        if !timer.valid {
             timer = NSTimer.scheduledTimerWithTimeInterval(timerInterval, target: self, selector: "updateTimerLabel", userInfo: nil, repeats: true)
         }
     }
     
+    class func destroyTimer() {
+        if (timer.valid)    		{
+            timer.invalidate()
+        }
+    }
+    
     func pauseGame() {
-        isPaused = true
+        GameViewController.setIfPause(true)
         menuButton.userInteractionEnabled = false
         scene.animateGameSceneOut() {
             self.showPauseMenu()
@@ -336,14 +360,16 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func resumeGame() {
+        GameViewController.setIfPause(false)
+        GameViewController.setIsResume(false)
         scene.userInteractionEnabled = true
         middleUIViewPanel.hidden = true
         resumeButton.hidden = true
         exitButton.hidden = true
         resumeButton.stopAnimating()
         scene.animateGameSceneIn() {
-            self.isPaused = false
             self.menuButton.userInteractionEnabled = true
+            self.countDownTimer()
         }
     }
     
@@ -367,20 +393,31 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             //                pauseGame()
             //                return
             //            }
+            
             timeLeft = timeLeft - Double(timerInterval)
-            //if timeLeft >= 10 {
-            let minutes:Int = Int(timeLeft)/60
-            let seconds:Int = Int(timeLeft) - minutes*60
-            timerLabel.text = "\(twoDigitString(minutes)):\(twoDigitString(seconds))"
-            //} else {
-            //    timerLabel.text = NSString(format: "%.1f", timeLeft)
-            //}
+            
+            showTimerLabel()
+            
+            if (timeLeft < 10.1){
+                if (timerLabel.textColor == UIColor.redColor()) {
+                    timerLabel.textColor = UIColor.blackColor()
+                } else {
+                    timerLabel.textColor = UIColor.redColor()
+                }
+            } else {
+                timerLabel.textColor = UIColor.blackColor()
+            }
+
             if timeLeft <= 0.1 {
-                isPaused = true
-                timer.invalidate()
-                timer = nil
+                GameViewController.setIfPause(true)
+                if (timer.valid) {
+                    timer.invalidate()
+                }
                 gameOver()
             }
+        } else if (isPaused && ifResumeGame) {
+            pauseGame()
+            GameViewController.destroyTimer()
         }
     }
     
@@ -403,12 +440,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 
     
     private func twoDigitString(number : Int) -> String {
-        if (number == 0) {
-            return "00"
-        }
-        if (number / 10 == 0) {
+        if (number <= 9) {
             return "0\(number)"
         }
-        return String(number);
+        return String(number)
     }
 }
