@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */; };
+		4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */; };
+		4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */; };
+		4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64B19D3AF450065D140 /* poli-fuse-settings@3x.png */; };
+		4DF7E65219D3AF450065D140 /* poli-fuse-spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64C19D3AF450065D140 /* poli-fuse-spotlight@2x.png */; };
+		4DF7E65319D3AF450065D140 /* poli-fuse-spotlight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64D19D3AF450065D140 /* poli-fuse-spotlight@3x.png */; };
 		C90B262419815CEF005288CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B262319815CEF005288CD /* AppDelegate.swift */; };
 		C90B262619815CEF005288CD /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C90B262519815CEF005288CD /* MenuScene.sks */; };
 		C90B262819815CEF005288CD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B262719815CEF005288CD /* GameScene.swift */; };
@@ -134,6 +140,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@2x.png"; sourceTree = "<group>"; };
+		4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@3x.png"; sourceTree = "<group>"; };
+		4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@2x.png"; sourceTree = "<group>"; };
+		4DF7E64B19D3AF450065D140 /* poli-fuse-settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@3x.png"; sourceTree = "<group>"; };
+		4DF7E64C19D3AF450065D140 /* poli-fuse-spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-spotlight@2x.png"; sourceTree = "<group>"; };
+		4DF7E64D19D3AF450065D140 /* poli-fuse-spotlight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-spotlight@3x.png"; sourceTree = "<group>"; };
 		C90B261E19815CEF005288CD /* Poli Fuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poli Fuse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B262219815CEF005288CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C90B262319815CEF005288CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -434,6 +446,12 @@
 		C9ACE12D19C29CD500785A92 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */,
+				4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */,
+				4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */,
+				4DF7E64B19D3AF450065D140 /* poli-fuse-settings@3x.png */,
+				4DF7E64C19D3AF450065D140 /* poli-fuse-spotlight@2x.png */,
+				4DF7E64D19D3AF450065D140 /* poli-fuse-spotlight@3x.png */,
 				C9ACE12E19C29CD500785A92 /* Background.png */,
 				C9ACE12F19C29CD500785A92 /* Background@2x.png */,
 				C9ACE13019C29CD500785A92 /* Blue.png */,
@@ -592,11 +610,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */,
 				C9ACE19E19C29CD500785A92 /* 9.ai in Resources */,
 				C9ACE16B19C29CD500785A92 /* Blue@2x.png in Resources */,
 				C9ACE17119C29CD500785A92 /* Green.png in Resources */,
 				C9723B1019889342008F7685 /* Chomp.wav in Resources */,
 				C9723BBD1988ACD1008F7685 /* Tile_14.png in Resources */,
+				4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */,
 				C9ACE17919C29CD500785A92 /* LevelComplete-Highlighted@2x.png in Resources */,
 				C90B262F19815CEF005288CD /* Image.xcassets in Resources */,
 				C9ACE18319C29CD500785A92 /* Orange@2x.png in Resources */,
@@ -615,6 +635,7 @@
 				C9723B1219889342008F7685 /* Error.wav in Resources */,
 				C9ACE19B19C29CD500785A92 /* 6.ai in Resources */,
 				C9723BBE1988ACD1008F7685 /* Tile_14@2x.png in Resources */,
+				4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */,
 				C9ACE18F19C29CD500785A92 /* Yellow.png in Resources */,
 				C9723B1319889342008F7685 /* Ka-Ching.wav in Resources */,
 				C9ACE16919C29CD500785A92 /* Background@2x.png in Resources */,
@@ -647,6 +668,7 @@
 				C9723A6A19887A39008F7685 /* Level_2.json in Resources */,
 				C9723BC91988ACD1008F7685 /* Tile_5@2x.png in Resources */,
 				C9723A6B19887A39008F7685 /* Level_3.json in Resources */,
+				4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */,
 				C9723BB31988ACD1008F7685 /* MaskTile@2x.png in Resources */,
 				C9723BC41988ACD1008F7685 /* Tile_3.png in Resources */,
 				C9ACE16F19C29CD500785A92 /* FlyingPoli@2x.png in Resources */,
@@ -669,6 +691,7 @@
 				C9ACE19619C29CD500785A92 /* 3.ai in Resources */,
 				C9723BB21988ACD1008F7685 /* MaskTile.png in Resources */,
 				C9ACE17419C29CD500785A92 /* Highscore.png in Resources */,
+				4DF7E65319D3AF450065D140 /* poli-fuse-spotlight@3x.png in Resources */,
 				C9723BC11988ACD1008F7685 /* Tile_1@2x.png in Resources */,
 				C9ACE17519C29CD500785A92 /* Highscore@2x.png in Resources */,
 				C9ACE16D19C29CD500785A92 /* ExitButton-Highlighted@2x.png in Resources */,
@@ -691,6 +714,7 @@
 				C9ACE17719C29CD500785A92 /* LaunchImage.png in Resources */,
 				C9ACE16819C29CD500785A92 /* Background.png in Resources */,
 				C9723A6C19887A39008F7685 /* Level_4.json in Resources */,
+				4DF7E65219D3AF450065D140 /* poli-fuse-spotlight@2x.png in Resources */,
 				C9723BC61988ACD1008F7685 /* Tile_4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
