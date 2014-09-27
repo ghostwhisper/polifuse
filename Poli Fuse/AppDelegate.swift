@@ -16,6 +16,7 @@ var highScore : Dictionary<String, Int> = ["scores": 0, "level": 0]
 var isAuthenticated:Bool = false
 var localPlayer : GKLocalPlayer!
 var gameCenterScore : GKScore!
+var leaderBoard = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         saveLastLevelStatus()
-        syncUserDataToGC(highScore["scores"]!, currentLevel: highScore["level"]!)
+        AppDelegate.updateScoreForGameCenterUser(highScore["scores"]!, currentLevel: highScore["level"]!)
     }
 
     func applicationWillEnterForeground(application: UIApplication!) {
@@ -55,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         GameViewController.destroyTimer()
         saveLastLevelStatus()
-        syncUserDataToGC(highScore["scores"]!, currentLevel: highScore["level"]!)
+        AppDelegate.updateScoreForGameCenterUser(highScore["scores"]!, currentLevel: highScore["level"]!)
     }
     
     class func updateHighScoreRecords(scores : Int, level : Int) {
@@ -114,22 +115,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     class func ifAuthenticated(authenticated:Bool){
         isAuthenticated = authenticated
     }
+    
+    class func setLeaderBoardID(leaderBoardId:String){
+        leaderBoard = leaderBoardId
+    }
 
     
     class func updateScoreForGameCenterUser(totalScore : Int, currentLevel : Int){
-        var leaderboardID = ""
         updateHighScoreRecords(totalScore, level: currentLevel)
         if isAuthenticated {
-            localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (categoryID, error) -> Void in
-                if error != nil {
-                    println("this is trying to load user leaderboard ID and the error is \(error.description)")
-                } else {
-                    leaderboardID = categoryID
-                }
-            })
-            
-            if (!leaderboardID.isEmpty) {
-                gameCenterScore = GKScore(leaderboardIdentifier : leaderboardID, forPlayer : localPlayer.playerID)
+            if (!leaderBoard.isEmpty) {
+                gameCenterScore = GKScore(leaderboardIdentifier : leaderBoard, forPlayer : localPlayer.playerID)
                 gameCenterScore.value = Int64(totalScore)
                 GKScore.reportScores([gameCenterScore], withCompletionHandler: {(error) -> Void in
                     if error != nil {
@@ -146,30 +142,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return newUserID
     }
     
-    func syncUserDataToGC(totalScore : Int, currentLevel : Int){
-        var leaderboardID = ""
-        if isAuthenticated {
-            localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler({ (categoryID, error) -> Void in
-                if error != nil {
-                    println("this is trying to load user leaderboard ID and the error is \(error.description)")
-                } else {
-                    leaderboardID = categoryID
-                }
-            })
-            
-            if (!leaderboardID.isEmpty) {
-                gameCenterScore = GKScore(leaderboardIdentifier : leaderboardID, forPlayer : localPlayer.playerID)
-                gameCenterScore.value = Int64(totalScore)
-                GKScore.reportScores([gameCenterScore], withCompletionHandler: {(error) -> Void in
-                    if error != nil {
-                        println("this is the last score and the error is \(error.description)")
-                        AppDelegate.updateHighScoreRecords(totalScore, level: currentLevel, playerId: localPlayer.playerID)
-                    }
-                })
-            }
-        }
-
-    }
     
     class func updateLocalHighScore(totalScore:Int, level:Int){
         var playerID = AppDelegate.getPlayerId()

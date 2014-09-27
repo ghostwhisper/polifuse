@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0A19D649910093CC23 /* cash-in.wav */; };
+		4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0B19D649910093CC23 /* GetPoint.wav */; };
+		4DC0BF1019D649910093CC23 /* levelUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0C19D649910093CC23 /* levelUp.wav */; };
+		4DC0BF1119D649910093CC23 /* multipleScores.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0D19D649910093CC23 /* multipleScores.wav */; };
 		4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */; };
 		4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */; };
 		4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */; };
 		4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64B19D3AF450065D140 /* poli-fuse-settings@3x.png */; };
 		4DF7E65219D3AF450065D140 /* poli-fuse-spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64C19D3AF450065D140 /* poli-fuse-spotlight@2x.png */; };
 		4DF7E65319D3AF450065D140 /* poli-fuse-spotlight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64D19D3AF450065D140 /* poli-fuse-spotlight@3x.png */; };
+		4DF7E65919D4AB7E0065D140 /* GetItem.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */; };
+		4DF7E65B19D4AC800065D140 /* HeartBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */; };
+		4DF7E65D19D4AEA50065D140 /* GameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */; };
 		C90B262419815CEF005288CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B262319815CEF005288CD /* AppDelegate.swift */; };
 		C90B262619815CEF005288CD /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C90B262519815CEF005288CD /* MenuScene.sks */; };
 		C90B262819815CEF005288CD /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90B262719815CEF005288CD /* GameScene.swift */; };
@@ -140,12 +147,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4DC0BF0A19D649910093CC23 /* cash-in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cash-in.wav"; sourceTree = "<group>"; };
+		4DC0BF0B19D649910093CC23 /* GetPoint.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GetPoint.wav; sourceTree = "<group>"; };
+		4DC0BF0C19D649910093CC23 /* levelUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelUp.wav; sourceTree = "<group>"; };
+		4DC0BF0D19D649910093CC23 /* multipleScores.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = multipleScores.wav; sourceTree = "<group>"; };
 		4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@2x.png"; sourceTree = "<group>"; };
 		4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@3x.png"; sourceTree = "<group>"; };
 		4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@2x.png"; sourceTree = "<group>"; };
 		4DF7E64B19D3AF450065D140 /* poli-fuse-settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@3x.png"; sourceTree = "<group>"; };
 		4DF7E64C19D3AF450065D140 /* poli-fuse-spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-spotlight@2x.png"; sourceTree = "<group>"; };
 		4DF7E64D19D3AF450065D140 /* poli-fuse-spotlight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-spotlight@3x.png"; sourceTree = "<group>"; };
+		4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GetItem.mp3; sourceTree = "<group>"; };
+		4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HeartBeat.mp3; sourceTree = "<group>"; };
+		4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
 		C90B261E19815CEF005288CD /* Poli Fuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poli Fuse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B262219815CEF005288CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C90B262319815CEF005288CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -379,6 +393,13 @@
 		C9723B0919889342008F7685 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4DC0BF0A19D649910093CC23 /* cash-in.wav */,
+				4DC0BF0B19D649910093CC23 /* GetPoint.wav */,
+				4DC0BF0C19D649910093CC23 /* levelUp.wav */,
+				4DC0BF0D19D649910093CC23 /* multipleScores.wav */,
+				4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */,
+				4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */,
+				4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */,
 				C9723B0A19889342008F7685 /* Chomp.wav */,
 				C9723B0B19889342008F7685 /* Drip.wav */,
 				C9723B0C19889342008F7685 /* Error.wav */,
@@ -630,12 +651,15 @@
 				C9723BB71988ACD1008F7685 /* Tile_11.png in Resources */,
 				C9ACE18519C29CD500785A92 /* PlayButton@2x.png in Resources */,
 				C9ACE19D19C29CD500785A92 /* 8.ai in Resources */,
+				4DC0BF1019D649910093CC23 /* levelUp.wav in Resources */,
 				C9ACE17D19C29CD500785A92 /* Menu-Highlighted@2x.png in Resources */,
 				C9723BC81988ACD1008F7685 /* Tile_5.png in Resources */,
+				4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */,
 				C9723B1219889342008F7685 /* Error.wav in Resources */,
 				C9ACE19B19C29CD500785A92 /* 6.ai in Resources */,
 				C9723BBE1988ACD1008F7685 /* Tile_14@2x.png in Resources */,
 				4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */,
+				4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */,
 				C9ACE18F19C29CD500785A92 /* Yellow.png in Resources */,
 				C9723B1319889342008F7685 /* Ka-Ching.wav in Resources */,
 				C9ACE16919C29CD500785A92 /* Background@2x.png in Resources */,
@@ -668,6 +692,7 @@
 				C9723A6A19887A39008F7685 /* Level_2.json in Resources */,
 				C9723BC91988ACD1008F7685 /* Tile_5@2x.png in Resources */,
 				C9723A6B19887A39008F7685 /* Level_3.json in Resources */,
+				4DF7E65919D4AB7E0065D140 /* GetItem.mp3 in Resources */,
 				4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */,
 				C9723BB31988ACD1008F7685 /* MaskTile@2x.png in Resources */,
 				C9723BC41988ACD1008F7685 /* Tile_3.png in Resources */,
@@ -684,6 +709,7 @@
 				C9ACE18619C29CD500785A92 /* Red.png in Resources */,
 				C9ACE17E19C29CD500785A92 /* Menu@2x.png in Resources */,
 				C9ACE18A19C29CD500785A92 /* ScoreButton-Highlighted@2x.png in Resources */,
+				4DF7E65D19D4AEA50065D140 /* GameOver.mp3 in Resources */,
 				C9ACE17B19C29CD500785A92 /* Logo1@2x.png in Resources */,
 				C9ACE17619C29CD500785A92 /* informationBar@2x.png in Resources */,
 				C9ACE1A019C29CD500785A92 /* 继续.sct in Resources */,
@@ -699,7 +725,9 @@
 				C90B262D19815CEF005288CD /* Main.storyboard in Resources */,
 				C9723BC51988ACD1008F7685 /* Tile_3@2x.png in Resources */,
 				C9723BCC1988ACD1008F7685 /* Tile_8.png in Resources */,
+				4DC0BF1119D649910093CC23 /* multipleScores.wav in Resources */,
 				C9ACE17C19C29CD500785A92 /* Logo2@2x.png in Resources */,
+				4DF7E65B19D4AC800065D140 /* HeartBeat.mp3 in Resources */,
 				C9ACE18E19C29CD500785A92 /* x_close_window@2x.png in Resources */,
 				C9723A6819887A39008F7685 /* Level_0.json in Resources */,
 				C9ACE18D19C29CD500785A92 /* Target@2x.png in Resources */,

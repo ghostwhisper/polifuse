@@ -31,6 +31,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     var backgroundMusic: AVAudioPlayer!
     
+    var allGameSoundEffects = Dictionary<String,AVAudioPlayer>()
+    
     @IBOutlet var targetLabel: UILabel!
     @IBOutlet var timerLabel: UILabel!
     @IBOutlet var scoreLabel: UILabel!
@@ -100,7 +102,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         // Create and configure the scene.
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .AspectFill
-        
+        scene.setScoreLabelLocation(CGPoint(x: skView.bounds.size.width - scorePanel.center.x, y:skView.bounds.size.height - scorePanel.center.y))
         // Present the scene.
         skView.presentScene(scene)
         
@@ -113,6 +115,12 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         backgroundMusic = AVAudioPlayer(contentsOfURL: url, error: nil)
         backgroundMusic.numberOfLoops = -1
         //backgroundMusic.play()
+        
+        //initHeartBeatSound()
+        //initGameOverSound()
+        initAllGameSounds("GameOver", formatExtention: "mp3")
+        initAllGameSounds("HeartBeat", formatExtention: "mp3")
+        initAllGameSounds("levelUp", formatExtention: "wav")
         
         if (ifResumeGame) {
             let lastGameStatus:Dictionary<String, String> = AppDelegate.loadLocalLastLevel()!
@@ -131,6 +139,19 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         
         beginGame()
 
+    }
+    
+    
+    private func initAllGameSounds(fileName:String, formatExtention:String) {
+        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: formatExtention)
+        var soundEffect = AVAudioPlayer(contentsOfURL: url, error: nil)
+        soundEffect.numberOfLoops = 0
+        soundEffect.prepareToPlay()
+        allGameSoundEffects.updateValue(soundEffect, forKey: fileName)
+    }
+    
+    private func getGameSound(fileName:String) -> AVAudioPlayer {
+        return allGameSoundEffects[fileName]!
     }
     
     func beginGame() {
@@ -189,17 +210,21 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         }
     }
     
+    var isChain = false;
     func handleMatches() {
         let chains = level.removeMatches()
         if chains.count == 0 {
             beginNextTurn()
+            isChain = false
             return
         }
-        scene.animateMatchedPolis(chains) {
+        
+        scene.animateMatchedPolis(chains, ifchain:isChain) {
             for chain in chains {
                 self.score += chain.score
                 self.totalScore += chain.score
             }
+            self.isChain = true
             self.updateLabels()
             let columns = self.level.fillHoles()
             self.scene.animateFallingPolis(columns) {
@@ -231,6 +256,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         if self.score >= level.targetScore {
             levelUp()
         } else if timeLeft <= 0 {
+            showGameOver()
             gameOver()
         }
     }
@@ -238,6 +264,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     func levelUp() {
         ++currentLevel
         AppDelegate.saveLastLevelStatus(totalScore, level: currentLevel, timeLeft : timeLeft)
+        getGameSound("levelUp").play()
         showLevelUp(){
             self.resetGame()
             self.beginGame()
@@ -245,7 +272,10 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func gameOver() {
-        showGameOver()
+        let heartBeatSoundEffect = getGameSound("HeartBeat")
+        if (heartBeatSoundEffect.play()){
+            heartBeatSoundEffect.stop()
+        }
         GameViewController.setIfPause(true)
         if (timer.valid) {
             timer.invalidate()
@@ -286,6 +316,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func showGameOver() {
+        let gameOverSound = getGameSound("GameOver")
+        gameOverSound.play()
         highScoreImage.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
         highScoreImage.animationDuration = 0.5
         highScoreImage.startAnimating()
@@ -397,22 +429,29 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             timeLeft = timeLeft - Double(timerInterval)
             
             showTimerLabel()
-            
+            let heartBeatSoundEffect = getGameSound("HeartBeat")
             if (timeLeft < 10.1){
+                if (!heartBeatSoundEffect.play()){
+                    heartBeatSoundEffect.play()
+                }
                 if (timerLabel.textColor == UIColor.redColor()) {
                     timerLabel.textColor = UIColor.blackColor()
                 } else {
                     timerLabel.textColor = UIColor.redColor()
                 }
             } else {
+                if (heartBeatSoundEffect.play()){
+                    heartBeatSoundEffect.pause()
+                }
                 timerLabel.textColor = UIColor.blackColor()
             }
 
             if timeLeft <= 0.1 {
-                GameViewController.setIfPause(true)
+                heartBeatSoundEffect.stop()
                 if (timer.valid) {
                     timer.invalidate()
                 }
+                showGameOver()
                 gameOver()
             }
         } else if (isPaused && ifResumeGame) {

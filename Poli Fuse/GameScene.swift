@@ -25,13 +25,16 @@ class GameScene: SKScene {
     var swipeFromColumn: Int?
     var swipeFromRow: Int?
     
+    var scoreLabelLocation:CGPoint!
+    
     var swipeHandler: ((Swap) -> ())?
     
     let swapSound = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
     let invalidSwapSound = SKAction.playSoundFileNamed("Error.wav", waitForCompletion: false)
-    let matchSound = SKAction.playSoundFileNamed("Ka-Ching.wav", waitForCompletion: false)
+    let matchSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: false)
     let fallingPoliSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
     let addPoliSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
+    let multipleScoreSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -45,7 +48,7 @@ class GameScene: SKScene {
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
-            y: -TileHeight * CGFloat(NumRows) / 1.8)
+            y: -TileHeight * CGFloat(NumRows) / 2)
         
         tilesLayer.position = layerPosition
         gameLayer.addChild(tilesLayer)
@@ -63,6 +66,11 @@ class GameScene: SKScene {
         swipeFromRow = nil
         
         SKLabelNode(fontNamed: "GillSans-BoldItalic")
+    }
+    
+    func setScoreLabelLocation(point:CGPoint) {
+        self.scoreLabelLocation = CGPoint(x:point.x - TileWidth * CGFloat(NumColumns) / 2, y:point.y - TileHeight * CGFloat(NumRows) / 2)
+        println(self.scoreLabelLocation.y)
     }
     
     func addSpritesForPoli(polis: SetCollection<Poli>) {
@@ -285,7 +293,7 @@ class GameScene: SKScene {
         runAction(invalidSwapSound)
     }
     
-    func animateMatchedPolis(chains: SetCollection<PoliChain>, completion: () -> ()) {
+    func animateMatchedPolis(chains: SetCollection<PoliChain>, ifchain:Bool, completion: () -> ()) {
         for chain in chains {
             animateScoreForChain(chain)
             for poli in chain.poliList {
@@ -299,7 +307,11 @@ class GameScene: SKScene {
                 }
             }
         }
-        runAction(matchSound)
+        if (ifchain) {
+            runAction(multipleScoreSound)
+        } else {
+            runAction(matchSound)
+        }
         runAction(SKAction.waitForDuration(0.3), completion: completion)
     }
     
@@ -372,21 +384,22 @@ class GameScene: SKScene {
         let firstSprite = chain.firstOne().sprite!
         let lastSprite = chain.lastOne().sprite!
         let centerPosition = CGPoint(
-            x: (firstSprite.position.x + lastSprite.position.x)/2,
-            y: (firstSprite.position.y + lastSprite.position.y)/2 - 8)
-        
+            x: (firstSprite.position.x + lastSprite.position.x)/2 - TileWidth * CGFloat(NumColumns) / 2,
+            y: (firstSprite.position.y + lastSprite.position.y)/2 - 8 - TileHeight * CGFloat(NumRows) / 2)
         // Add a label for the score that slowly floats up.
         let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
         scoreLabel.fontSize = 16
         scoreLabel.text = NSString(format: "%ld", chain.score)
         scoreLabel.position = centerPosition
         scoreLabel.zPosition = 300
-        scoreLabel.fontColor = UIColor.blackColor()
-        polisLayer.addChild(scoreLabel)
+        scoreLabel.fontColor = UIColor.whiteColor()
+        gameLayer.addChild(scoreLabel)
         
-        let moveAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.7)
-        moveAction.timingMode = .EaseOut
-        scoreLabel.runAction(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
+        let moveUpAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.6)
+        let moveAction = SKAction.moveTo(scoreLabelLocation, duration: 0.3)
+
+        moveAction.timingMode = .EaseIn
+        scoreLabel.runAction(SKAction.sequence([moveUpAction,moveAction, SKAction.removeFromParent()]))
     }
     
     func animateGameSceneOut(completion: () -> ()) {

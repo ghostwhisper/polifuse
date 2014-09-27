@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Yuchen Li. All rights reserved.
 //
 import UIKit
+import AVFoundation
 import SpriteKit
 import GameKit
 
@@ -20,7 +21,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     var leaderboardIdentifier = ""
     var isAuthenticated = false
     var localPlayer : GKLocalPlayer!
-
+    var startGameSoundEffect : AVAudioPlayer!
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -45,6 +46,11 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         /* Set the scale mode to scale to fit the window */
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
+        
+        let url = NSBundle.mainBundle().URLForResource("StartGame", withExtension: "mp3")
+        startGameSoundEffect = AVAudioPlayer(contentsOfURL: url, error: nil)
+        startGameSoundEffect.numberOfLoops = 0
+        startGameSoundEffect.prepareToPlay()
         
     }
     
@@ -98,6 +104,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     }
     
     func startGame() {
+        startGameSoundEffect.play()
         AppDelegate.deleteLocalLastLevelRecord()
         let view2 = self.storyboard?.instantiateViewControllerWithIdentifier("gameViewController") as GameViewController
         self.navigationController?.pushViewController(view2, animated: true)
@@ -136,8 +143,10 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
                                 println(error.localizedDescription)
                             } else {
                                 self.leaderboardIdentifier = leaderboardIdentifier
+                                AppDelegate.setLeaderBoardID(leaderboardIdentifier)
                             }
                         })
+                        AppDelegate.ifAuthenticated(self.isAuthenticated)
                         AppDelegate.setPlayerId(self.localPlayer.playerID)
                         AppDelegate.syncLocalPlayerFromGC(self.localPlayer)
                         self.displayAllButtons()
@@ -194,7 +203,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         
         gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         gcViewController.leaderboardIdentifier = leaderboardIdentifier
-        
+        println(leaderboardIdentifier)
         self.presentViewController(gcViewController, animated: true, completion: nil)
     }
     
