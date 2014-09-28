@@ -9,8 +9,15 @@
 /* Begin PBXBuildFile section */
 		4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0A19D649910093CC23 /* cash-in.wav */; };
 		4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0B19D649910093CC23 /* GetPoint.wav */; };
-		4DC0BF1019D649910093CC23 /* levelUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0C19D649910093CC23 /* levelUp.wav */; };
+		4DC0BF1019D649910093CC23 /* levelUp1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0C19D649910093CC23 /* levelUp1.wav */; };
 		4DC0BF1119D649910093CC23 /* multipleScores.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0D19D649910093CC23 /* multipleScores.wav */; };
+		4DC0BF1319D7A12B0093CC23 /* swipe.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1219D7A12B0093CC23 /* swipe.wav */; };
+		4DC0BF1519D7A6950093CC23 /* levelUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1419D7A6950093CC23 /* levelUp.wav */; };
+		4DC0BF1719D7A8F50093CC23 /* error1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1619D7A8F50093CC23 /* error1.wav */; };
+		4DC0BF1919D7AC570093CC23 /* falling.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1819D7AC570093CC23 /* falling.wav */; };
+		4DC0BF1B19D7ACA80093CC23 /* addPoli.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1A19D7ACA80093CC23 /* addPoli.wav */; };
+		4DC0BF1D19D7AE960093CC23 /* hurray.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1C19D7AE960093CC23 /* hurray.wav */; };
+		4DC0BF1F19D7B3E00093CC23 /* startGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1E19D7B3DF0093CC23 /* startGame.mp3 */; };
 		4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */; };
 		4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */; };
 		4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */; };
@@ -42,12 +49,6 @@
 		C9723B0419888812008F7685 /* GameLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723B0319888812008F7685 /* GameLevel.swift */; };
 		C9723B0619888CA7008F7685 /* Swap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723B0519888CA7008F7685 /* Swap.swift */; };
 		C9723B0819888D6C008F7685 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723B0719888D6C008F7685 /* Tile.swift */; };
-		C9723B1019889342008F7685 /* Chomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0A19889342008F7685 /* Chomp.wav */; };
-		C9723B1119889342008F7685 /* Drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0B19889342008F7685 /* Drip.wav */; };
-		C9723B1219889342008F7685 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0C19889342008F7685 /* Error.wav */; };
-		C9723B1319889342008F7685 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0D19889342008F7685 /* Ka-Ching.wav */; };
-		C9723B1419889342008F7685 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0E19889342008F7685 /* Mining by Moonlight.mp3 */; };
-		C9723B1519889342008F7685 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9723B0F19889342008F7685 /* Scrape.wav */; };
 		C9723BB21988ACD1008F7685 /* MaskTile.png in Resources */ = {isa = PBXBuildFile; fileRef = C9723B961988ACD1008F7685 /* MaskTile.png */; };
 		C9723BB31988ACD1008F7685 /* MaskTile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C9723B971988ACD1008F7685 /* MaskTile@2x.png */; };
 		C9723BB41988ACD1008F7685 /* Tile_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C9723B981988ACD1008F7685 /* Tile_1.png */; };
@@ -149,8 +150,15 @@
 /* Begin PBXFileReference section */
 		4DC0BF0A19D649910093CC23 /* cash-in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cash-in.wav"; sourceTree = "<group>"; };
 		4DC0BF0B19D649910093CC23 /* GetPoint.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GetPoint.wav; sourceTree = "<group>"; };
-		4DC0BF0C19D649910093CC23 /* levelUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelUp.wav; sourceTree = "<group>"; };
+		4DC0BF0C19D649910093CC23 /* levelUp1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelUp1.wav; sourceTree = "<group>"; };
 		4DC0BF0D19D649910093CC23 /* multipleScores.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = multipleScores.wav; sourceTree = "<group>"; };
+		4DC0BF1219D7A12B0093CC23 /* swipe.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = swipe.wav; sourceTree = "<group>"; };
+		4DC0BF1419D7A6950093CC23 /* levelUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelUp.wav; sourceTree = "<group>"; };
+		4DC0BF1619D7A8F50093CC23 /* error1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error1.wav; sourceTree = "<group>"; };
+		4DC0BF1819D7AC570093CC23 /* falling.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = falling.wav; sourceTree = "<group>"; };
+		4DC0BF1A19D7ACA80093CC23 /* addPoli.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addPoli.wav; sourceTree = "<group>"; };
+		4DC0BF1C19D7AE960093CC23 /* hurray.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurray.wav; sourceTree = "<group>"; };
+		4DC0BF1E19D7B3DF0093CC23 /* startGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startGame.mp3; sourceTree = "<group>"; };
 		4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@2x.png"; sourceTree = "<group>"; };
 		4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@3x.png"; sourceTree = "<group>"; };
 		4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@2x.png"; sourceTree = "<group>"; };
@@ -187,12 +195,6 @@
 		C9723B0319888812008F7685 /* GameLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevel.swift; sourceTree = "<group>"; };
 		C9723B0519888CA7008F7685 /* Swap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swap.swift; sourceTree = "<group>"; };
 		C9723B0719888D6C008F7685 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
-		C9723B0A19889342008F7685 /* Chomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Chomp.wav; sourceTree = "<group>"; };
-		C9723B0B19889342008F7685 /* Drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drip.wav; sourceTree = "<group>"; };
-		C9723B0C19889342008F7685 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Error.wav; sourceTree = "<group>"; };
-		C9723B0D19889342008F7685 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
-		C9723B0E19889342008F7685 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
-		C9723B0F19889342008F7685 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
 		C9723B961988ACD1008F7685 /* MaskTile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MaskTile.png; sourceTree = "<group>"; };
 		C9723B971988ACD1008F7685 /* MaskTile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MaskTile@2x.png"; sourceTree = "<group>"; };
 		C9723B981988ACD1008F7685 /* Tile_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tile_1.png; sourceTree = "<group>"; };
@@ -395,17 +397,18 @@
 			children = (
 				4DC0BF0A19D649910093CC23 /* cash-in.wav */,
 				4DC0BF0B19D649910093CC23 /* GetPoint.wav */,
-				4DC0BF0C19D649910093CC23 /* levelUp.wav */,
+				4DC0BF0C19D649910093CC23 /* levelUp1.wav */,
+				4DC0BF1419D7A6950093CC23 /* levelUp.wav */,
 				4DC0BF0D19D649910093CC23 /* multipleScores.wav */,
+				4DC0BF1619D7A8F50093CC23 /* error1.wav */,
 				4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */,
+				4DC0BF1A19D7ACA80093CC23 /* addPoli.wav */,
+				4DC0BF1819D7AC570093CC23 /* falling.wav */,
 				4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */,
 				4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */,
-				C9723B0A19889342008F7685 /* Chomp.wav */,
-				C9723B0B19889342008F7685 /* Drip.wav */,
-				C9723B0C19889342008F7685 /* Error.wav */,
-				C9723B0D19889342008F7685 /* Ka-Ching.wav */,
-				C9723B0E19889342008F7685 /* Mining by Moonlight.mp3 */,
-				C9723B0F19889342008F7685 /* Scrape.wav */,
+				4DC0BF1219D7A12B0093CC23 /* swipe.wav */,
+				4DC0BF1C19D7AE960093CC23 /* hurray.wav */,
+				4DC0BF1E19D7B3DF0093CC23 /* startGame.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -635,7 +638,6 @@
 				C9ACE19E19C29CD500785A92 /* 9.ai in Resources */,
 				C9ACE16B19C29CD500785A92 /* Blue@2x.png in Resources */,
 				C9ACE17119C29CD500785A92 /* Green.png in Resources */,
-				C9723B1019889342008F7685 /* Chomp.wav in Resources */,
 				C9723BBD1988ACD1008F7685 /* Tile_14.png in Resources */,
 				4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */,
 				C9ACE17919C29CD500785A92 /* LevelComplete-Highlighted@2x.png in Resources */,
@@ -647,21 +649,21 @@
 				C9ACE19019C29CD500785A92 /* Yellow@2x.png in Resources */,
 				C9ACE16C19C29CD500785A92 /* clock@2x.png in Resources */,
 				C9ACE19719C29CD500785A92 /* 3.png in Resources */,
-				C9723B1519889342008F7685 /* Scrape.wav in Resources */,
 				C9723BB71988ACD1008F7685 /* Tile_11.png in Resources */,
 				C9ACE18519C29CD500785A92 /* PlayButton@2x.png in Resources */,
+				4DC0BF1519D7A6950093CC23 /* levelUp.wav in Resources */,
 				C9ACE19D19C29CD500785A92 /* 8.ai in Resources */,
-				4DC0BF1019D649910093CC23 /* levelUp.wav in Resources */,
+				4DC0BF1019D649910093CC23 /* levelUp1.wav in Resources */,
 				C9ACE17D19C29CD500785A92 /* Menu-Highlighted@2x.png in Resources */,
 				C9723BC81988ACD1008F7685 /* Tile_5.png in Resources */,
 				4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */,
-				C9723B1219889342008F7685 /* Error.wav in Resources */,
+				4DC0BF1319D7A12B0093CC23 /* swipe.wav in Resources */,
 				C9ACE19B19C29CD500785A92 /* 6.ai in Resources */,
+				4DC0BF1D19D7AE960093CC23 /* hurray.wav in Resources */,
 				C9723BBE1988ACD1008F7685 /* Tile_14@2x.png in Resources */,
 				4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */,
 				4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */,
 				C9ACE18F19C29CD500785A92 /* Yellow.png in Resources */,
-				C9723B1319889342008F7685 /* Ka-Ching.wav in Resources */,
 				C9ACE16919C29CD500785A92 /* Background@2x.png in Resources */,
 				C9ACE12A19C29C4600785A92 /* Sprites.atlas in Resources */,
 				C9723BCD1988ACD1008F7685 /* Tile_8@2x.png in Resources */,
@@ -672,7 +674,6 @@
 				C9ACE19219C29CD500785A92 /* 1.ai in Resources */,
 				C9ACE19119C29CD500785A92 /* 0.ai in Resources */,
 				C9723BCA1988ACD1008F7685 /* Tile_7.png in Resources */,
-				C9723B1119889342008F7685 /* Drip.wav in Resources */,
 				C9ACE18719C29CD500785A92 /* Red@2x.png in Resources */,
 				C9ACE19319C29CD500785A92 /* 1.png in Resources */,
 				C9ACE17819C29CD500785A92 /* LaunchImage@2x.png in Resources */,
@@ -698,7 +699,7 @@
 				C9723BC41988ACD1008F7685 /* Tile_3.png in Resources */,
 				C9ACE16F19C29CD500785A92 /* FlyingPoli@2x.png in Resources */,
 				C9723A6919887A39008F7685 /* Level_1.json in Resources */,
-				C9723B1419889342008F7685 /* Mining by Moonlight.mp3 in Resources */,
+				4DC0BF1F19D7B3E00093CC23 /* startGame.mp3 in Resources */,
 				C9ACE17219C29CD500785A92 /* Green@2x.png in Resources */,
 				C9ACE17019C29CD500785A92 /* GameOver@2x.png in Resources */,
 				C9723BBB1988ACD1008F7685 /* Tile_13.png in Resources */,
@@ -710,6 +711,7 @@
 				C9ACE17E19C29CD500785A92 /* Menu@2x.png in Resources */,
 				C9ACE18A19C29CD500785A92 /* ScoreButton-Highlighted@2x.png in Resources */,
 				4DF7E65D19D4AEA50065D140 /* GameOver.mp3 in Resources */,
+				4DC0BF1719D7A8F50093CC23 /* error1.wav in Resources */,
 				C9ACE17B19C29CD500785A92 /* Logo1@2x.png in Resources */,
 				C9ACE17619C29CD500785A92 /* informationBar@2x.png in Resources */,
 				C9ACE1A019C29CD500785A92 /* 继续.sct in Resources */,
@@ -718,6 +720,7 @@
 				C9723BB21988ACD1008F7685 /* MaskTile.png in Resources */,
 				C9ACE17419C29CD500785A92 /* Highscore.png in Resources */,
 				4DF7E65319D3AF450065D140 /* poli-fuse-spotlight@3x.png in Resources */,
+				4DC0BF1B19D7ACA80093CC23 /* addPoli.wav in Resources */,
 				C9723BC11988ACD1008F7685 /* Tile_1@2x.png in Resources */,
 				C9ACE17519C29CD500785A92 /* Highscore@2x.png in Resources */,
 				C9ACE16D19C29CD500785A92 /* ExitButton-Highlighted@2x.png in Resources */,
@@ -735,6 +738,7 @@
 				C9723BC31988ACD1008F7685 /* Tile_2@2x.png in Resources */,
 				C9723BB41988ACD1008F7685 /* Tile_1.png in Resources */,
 				C9723BC01988ACD1008F7685 /* Tile_15@2x.png in Resources */,
+				4DC0BF1919D7AC570093CC23 /* falling.wav in Resources */,
 				C9723BB51988ACD1008F7685 /* Tile_10.png in Resources */,
 				C9ACE19419C29CD500785A92 /* 2.ai in Resources */,
 				C9ACE19A19C29CD500785A92 /* 5.ai in Resources */,

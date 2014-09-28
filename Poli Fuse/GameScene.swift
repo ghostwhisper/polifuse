@@ -29,11 +29,11 @@ class GameScene: SKScene {
     
     var swipeHandler: ((Swap) -> ())?
     
-    let swapSound = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
-    let invalidSwapSound = SKAction.playSoundFileNamed("Error.wav", waitForCompletion: false)
-    let matchSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: false)
-    let fallingPoliSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
-    let addPoliSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
+    let swapSound = SKAction.playSoundFileNamed("swipe.wav", waitForCompletion: false)
+    let invalidSwapSound = SKAction.playSoundFileNamed("error1.wav", waitForCompletion: false)
+    let matchSound = SKAction.playSoundFileNamed("GetPoint.wav", waitForCompletion: false)
+    let fallingPoliSound = SKAction.playSoundFileNamed("addPoli.wav", waitForCompletion: false)
+    let addPoliSound = SKAction.playSoundFileNamed("falling.wav", waitForCompletion: false)
     let multipleScoreSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: false)
     
     override func didMoveToView(view: SKView) {

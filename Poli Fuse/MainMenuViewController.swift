@@ -47,7 +47,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
         
-        let url = NSBundle.mainBundle().URLForResource("StartGame", withExtension: "mp3")
+        let url = NSBundle.mainBundle().URLForResource("startGame", withExtension: "mp3")
         startGameSoundEffect = AVAudioPlayer(contentsOfURL: url, error: nil)
         startGameSoundEffect.numberOfLoops = 0
         startGameSoundEffect.prepareToPlay()
