@@ -65,11 +65,11 @@ class GameScene: SKScene {
         swipeFromColumn = nil
         swipeFromRow = nil
         
-        SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        SKLabelNode(fontNamed: "AgencyFB-Bold")
     }
     
     func setScoreLabelLocation(point:CGPoint) {
-        self.scoreLabelLocation = CGPoint(x:point.x - TileWidth * CGFloat(NumColumns) / 2, y:point.y - TileHeight * CGFloat(NumRows) / 2)
+        self.scoreLabelLocation = CGPoint(x:point.x - TileWidth * CGFloat(NumColumns) / 2, y:point.y - TileHeight * CGFloat(NumRows) / 2 - 140)
         println(self.scoreLabelLocation.y)
     }
     
@@ -387,12 +387,12 @@ class GameScene: SKScene {
             x: (firstSprite.position.x + lastSprite.position.x)/2 - TileWidth * CGFloat(NumColumns) / 2,
             y: (firstSprite.position.y + lastSprite.position.y)/2 - 8 - TileHeight * CGFloat(NumRows) / 2)
         // Add a label for the score that slowly floats up.
-        let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+        let scoreLabel = SKLabelNode(fontNamed: "AgencyFB-Bold")
         scoreLabel.fontSize = 16
         scoreLabel.text = NSString(format: "%ld", chain.score)
         scoreLabel.position = centerPosition
         scoreLabel.zPosition = 300
-        scoreLabel.fontColor = UIColor.whiteColor()
+        scoreLabel.fontColor = UIColor.blackColor()
         gameLayer.addChild(scoreLabel)
         
         let moveUpAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.6)
