@@ -203,7 +203,6 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         
         gcViewController.viewState = GKGameCenterViewControllerState.Leaderboards
         gcViewController.leaderboardIdentifier = leaderboardIdentifier
-        println(leaderboardIdentifier)
         self.presentViewController(gcViewController, animated: true, completion: nil)
     }
     

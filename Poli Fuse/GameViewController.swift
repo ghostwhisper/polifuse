@@ -39,6 +39,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet weak var highScore: UILabel!
     
+    @IBOutlet weak var readyGoImage: UIImageView!
     @IBOutlet weak var timerImage: UIImageView!
     @IBOutlet var scorePanel: UIImageView!
     @IBOutlet var middleUIViewPanel: UIImageView!
@@ -106,6 +107,13 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         // Present the scene.
         skView.presentScene(scene)
         
+    }
+    
+    private func showStartImageBan(){
+        readyGoImage.animationImages = [UIImage(named: "Ready"), UIImage(named: "Go")]
+        readyGoImage.animationDuration = 4
+        readyGoImage.animationRepeatCount = 1
+        readyGoImage.startAnimating()
     }
     
     override func viewWillAppear(animated: Bool){
@@ -182,8 +190,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         updateLabels()
         showTimerLabel()
         
+        showStartImageBan()
+        
         scene.animateGameSceneIn() {
             //self.shuffleButton.hidden = false
+            self.showStartImageBan()
             self.countDownTimer()
         }
     }
@@ -456,6 +467,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //    }
     
     func updateTimerLabel () {
+        if (readyGoImage.isAnimating()){
+            return
+        } else {
+            readyGoImage.hidden = true
+        }
         if (!isPaused) {
             //            if iAdBanner.bannerViewActionInProgress {
             //                pauseGame()

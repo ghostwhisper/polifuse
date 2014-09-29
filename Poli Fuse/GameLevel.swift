@@ -9,6 +9,7 @@
 import Foundation
 let NumColumns = 9
 var NumRows = 9
+let ChainScore = 10
 
 class GameLevel {
     private var polis = Array2D<Poli>(columns: NumColumns, rows: NumRows)
@@ -333,7 +334,7 @@ class GameLevel {
     func calculateScores(chains: SetCollection<PoliChain>) {
         // 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
         for chain in chains {
-            chain.score = 60 * (chain.length - 2) * comboMultiplier
+            chain.score = ChainScore * (chain.length - 2) * comboMultiplier
             ++comboMultiplier
         }
     }

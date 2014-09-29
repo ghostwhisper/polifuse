@@ -29,12 +29,12 @@ class GameScene: SKScene {
     
     var swipeHandler: ((Swap) -> ())?
     
-    let swapSound = SKAction.playSoundFileNamed("swipe.wav", waitForCompletion: false)
-    let invalidSwapSound = SKAction.playSoundFileNamed("error1.wav", waitForCompletion: false)
-    let matchSound = SKAction.playSoundFileNamed("GetPoint.wav", waitForCompletion: false)
-    let fallingPoliSound = SKAction.playSoundFileNamed("addPoli.wav", waitForCompletion: false)
-    let addPoliSound = SKAction.playSoundFileNamed("falling.wav", waitForCompletion: false)
-    let multipleScoreSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: false)
+    let swapSound = SKAction.playSoundFileNamed("swipe.wav", waitForCompletion: true)
+    let invalidSwapSound = SKAction.playSoundFileNamed("error1.wav", waitForCompletion: true)
+    let matchSound = SKAction.playSoundFileNamed("GetPoint.wav", waitForCompletion: true)
+    let fallingPoliSound = SKAction.playSoundFileNamed("addPoli.wav", waitForCompletion: true)
+    let addPoliSound = SKAction.playSoundFileNamed("falling.wav", waitForCompletion: true)
+    let multipleScoreSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: true)
     
     override func didMoveToView(view: SKView) {
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -48,7 +48,7 @@ class GameScene: SKScene {
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
-            y: -TileHeight * CGFloat(NumRows) / 2)
+            y: -TileHeight * CGFloat(NumRows) / 1.8)
         
         tilesLayer.position = layerPosition
         gameLayer.addChild(tilesLayer)
@@ -69,8 +69,7 @@ class GameScene: SKScene {
     }
     
     func setScoreLabelLocation(point:CGPoint) {
-        self.scoreLabelLocation = CGPoint(x:point.x - TileWidth * CGFloat(NumColumns) / 2, y:point.y - TileHeight * CGFloat(NumRows) / 2 - 140)
-        println(self.scoreLabelLocation.y)
+        self.scoreLabelLocation = CGPoint(x:point.x - TileWidth * CGFloat(NumColumns) / 2, y:point.y - TileHeight * CGFloat(NumRows) / 1.3)
     }
     
     func addSpritesForPoli(polis: SetCollection<Poli>) {
