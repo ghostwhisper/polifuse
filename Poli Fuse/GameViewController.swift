@@ -18,7 +18,7 @@ var timer:NSTimer = NSTimer()
 let timerInterval: NSTimeInterval = 1 // don't modify this value unless you know what you are doing.
 class GameViewController: UIViewController{// , ADBannerViewDelegate{
 
-    
+    var gameIsStarted = false
     var scene: GameScene!
     var level: GameLevel!
     var currentLevel: Int = 0
@@ -39,7 +39,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     @IBOutlet var levelLabel: UILabel!
     @IBOutlet weak var highScore: UILabel!
     
-    @IBOutlet weak var readyGoImage: UIImageView!
     @IBOutlet weak var timerImage: UIImageView!
     @IBOutlet var scorePanel: UIImageView!
     @IBOutlet var middleUIViewPanel: UIImageView!
@@ -110,10 +109,14 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     private func showStartImageBan(){
-        readyGoImage.animationImages = [UIImage(named: "Ready"), UIImage(named: "Go")]
-        readyGoImage.animationDuration = 4
-        readyGoImage.animationRepeatCount = 1
-        readyGoImage.startAnimating()
+        if (gameIsStarted == false) {
+            middleUIViewPanel.hidden = false;
+            middleUIViewPanel.animationImages = [UIImage(named: "Ready"), UIImage(named: "Go")]
+            middleUIViewPanel.animationDuration = 3
+            middleUIViewPanel.animationRepeatCount = 1
+            middleUIViewPanel.startAnimating()
+            gameIsStarted = true
+        }
     }
     
     override func viewWillAppear(animated: Bool){
@@ -144,7 +147,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             }
             ifResumeGame = false
         }
-        
         
         beginGame()
 
@@ -189,8 +191,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         timeLeft += Double(level.timeLeft)
         updateLabels()
         showTimerLabel()
-        
-        showStartImageBan()
         
         scene.animateGameSceneIn() {
             //self.shuffleButton.hidden = false
@@ -467,10 +467,10 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //    }
     
     func updateTimerLabel () {
-        if (readyGoImage.isAnimating()){
+        if (middleUIViewPanel.isAnimating()){
             return
         } else {
-            readyGoImage.hidden = true
+            middleUIViewPanel.hidden = true
         }
         if (!isPaused) {
             //            if iAdBanner.bannerViewActionInProgress {
