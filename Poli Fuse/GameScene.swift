@@ -32,7 +32,7 @@ class GameScene: SKScene {
     let swapSound = SKAction.playSoundFileNamed("swipe.wav", waitForCompletion: true)
     let invalidSwapSound = SKAction.playSoundFileNamed("error1.wav", waitForCompletion: true)
     let matchSound = SKAction.playSoundFileNamed("GetPoint.wav", waitForCompletion: true)
-    let fallingPoliSound = SKAction.playSoundFileNamed("addPoli.wav", waitForCompletion: true)
+    //let fallingPoliSound = SKAction.playSoundFileNamed("addPoli.wav", waitForCompletion: true)
     let addPoliSound = SKAction.playSoundFileNamed("falling.wav", waitForCompletion: true)
     let multipleScoreSound = SKAction.playSoundFileNamed("cash-in.wav", waitForCompletion: true)
     
@@ -333,7 +333,7 @@ class GameScene: SKScene {
                 sprite.runAction(
                     SKAction.sequence([
                         SKAction.waitForDuration(delay),
-                        SKAction.group([moveAction, fallingPoliSound])]))
+                        SKAction.group([moveAction, addPoliSound])]))//fallingPoliSound])]))
             }
         }
         // 6

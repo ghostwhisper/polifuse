@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         GameViewController.setIfPause(true)
-        
+        GameViewController.pauseBGM()
     }
 
     func applicationDidEnterBackground(application: UIApplication!) {
@@ -70,7 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     class func saveLastLevelStatus(scores : Int, level : Int, timeLeft: Double){
         if (level > 0) {
-            println("saving lastlevelstatus for lastLevel_\(playerID) and the level is \(level)")
             lastLevelStatus = ["scores": String(scores), "level": String(level), "timeLeft": NSString(format: "%.2f", timeLeft)]
             var result = lastLevelStatus as NSDictionary
             var data = NSKeyedArchiver.archivedDataWithRootObject(result)
@@ -80,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func saveLastLevelStatus() {
         if (lastLevelStatus["level"]?.toInt() > 0) {
-            println("saving lastlevelstatus for lastLevel_\(playerID)")
             var result = lastLevelStatus as NSDictionary
             var data = NSKeyedArchiver.archivedDataWithRootObject(result)
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: AppDelegate.escapeUserId("lastLevel_\(playerID)"))
@@ -129,7 +127,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 gameCenterScore.value = Int64(totalScore)
                 GKScore.reportScores([gameCenterScore], withCompletionHandler: {(error) -> Void in
                     if error != nil {
-                        println("this is the last score and the error is \(error.description)")
                         self.updateHighScoreRecords(totalScore, level: currentLevel, playerId: localPlayer.playerID)
                     }
                 })

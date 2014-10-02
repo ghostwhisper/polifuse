@@ -16,6 +16,9 @@ var isPaused: Bool = false
 var ifResumeGame = false
 var timer:NSTimer = NSTimer()
 let timerInterval: NSTimeInterval = 1 // don't modify this value unless you know what you are doing.
+let soundEffectVolumn:Float = 0.9
+let bgmVolumn:Float = 0.5
+var backgroundMusic: AVAudioPlayer!
 class GameViewController: UIViewController{// , ADBannerViewDelegate{
 
     var gameIsStarted = false
@@ -29,9 +32,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 
     var totalScore : Int = 0
     
-    var backgroundMusic: AVAudioPlayer!
-    
     var allGameSoundEffects = Dictionary<String,AVAudioPlayer>()
+    var allBackgrounMusic:[AVAudioPlayer] = []
     
     @IBOutlet var targetLabel: UILabel!
     @IBOutlet var timerLabel: UILabel!
@@ -84,6 +86,15 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        if (backgroundMusic.playing){
+            backgroundMusic.stop()
+        }
+        if (getGameSound("hurray").playing){
+            getGameSound("hurray").stop()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //println(NSUserDefaults.standardUserDefaults().dictionaryRepresentation())
@@ -122,17 +133,14 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
         // Load and start background music.
-        let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
-        backgroundMusic = AVAudioPlayer(contentsOfURL: url, error: nil)
-        backgroundMusic.numberOfLoops = -1
-        //backgroundMusic.play()
-        
-        //initHeartBeatSound()
-        //initGameOverSound()
-        initAllGameSounds("GameOver", formatExtention: "mp3")
-        initAllGameSounds("HeartBeat", formatExtention: "mp3")
-        initAllGameSounds("levelUp", formatExtention: "wav")
-        initAllGameSounds("hurray", formatExtention: "wav")
+        initBackgroundMusic("Track 1", formatExtension: "mp3")
+        initBackgroundMusic("Track 12", formatExtension: "mp3")
+        initBackgroundMusic("Track 13", formatExtension: "mp3")
+    
+        initAllGameSounds("GameOver", formatExtension: "mp3")
+        initAllGameSounds("HeartBeat", formatExtension: "mp3")
+        initAllGameSounds("levelUp", formatExtension: "wav")
+        initAllGameSounds("hurray", formatExtension: "wav")
         
         if (ifResumeGame) {
             let lastGameStatus:Dictionary<String, String> = AppDelegate.loadLocalLastLevel()!
@@ -148,15 +156,36 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             ifResumeGame = false
         }
         
+        backgroundMusic = getBackgroundMusicInIndex(Int(arc4random_uniform(UInt32(getCountOfAllBMG()))))
+        
         beginGame()
 
     }
     
+    private func initBackgroundMusic(fileName:String, formatExtension:String){
+        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: formatExtension)
+        let errorPoint = NSErrorPointer()
+        var bkmusic = AVAudioPlayer(contentsOfURL: url, error: errorPoint)
+        bkmusic.numberOfLoops = 0
+        bkmusic.volume = bgmVolumn
+        bkmusic.prepareToPlay()
+        allBackgrounMusic.append(bkmusic)
+    }
     
-    private func initAllGameSounds(fileName:String, formatExtention:String) {
-        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: formatExtention)
-        var soundEffect = AVAudioPlayer(contentsOfURL: url, error: nil)
+    private func getBackgroundMusicInIndex(index:Int) -> AVAudioPlayer{
+        return allBackgrounMusic[index]
+    }
+    
+    private func getCountOfAllBMG() -> Int{
+        return allBackgrounMusic.count
+    }
+    
+    private func initAllGameSounds(fileName:String, formatExtension:String) {
+        let url = NSBundle.mainBundle().URLForResource(fileName, withExtension: formatExtension)
+        let errorPoint = NSErrorPointer()
+        var soundEffect = AVAudioPlayer(contentsOfURL: url, error: errorPoint)
         soundEffect.numberOfLoops = 0
+        soundEffect.volume = soundEffectVolumn
         soundEffect.prepareToPlay()
         allGameSoundEffects.updateValue(soundEffect, forKey: fileName)
     }
@@ -207,6 +236,10 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     class func setIfPause(ifPause:Bool) {
         isPaused = ifPause
+    }
+    
+    class func pauseBGM(){
+        backgroundMusic.pause()
     }
     
     func handleSwipe(swap: Swap) {
@@ -278,7 +311,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         ++currentLevel
         AppDelegate.saveLastLevelStatus(totalScore, level: currentLevel, timeLeft : timeLeft)
         let heartBeatSoundEffect = getGameSound("HeartBeat")
-        if (heartBeatSoundEffect.play()){
+        if (heartBeatSoundEffect.playing){
             heartBeatSoundEffect.stop()
         }
         getGameSound("levelUp").play()
@@ -289,6 +322,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func gameOver() {
+        backgroundMusic.stop()
         GameViewController.setIfPause(true)
         if (timer.valid) {
             timer.invalidate()
@@ -302,10 +336,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         AppDelegate.deleteLocalLastLevelRecord()
     }
     
+    
     func showFinishAllLevels() {
         // need to finish
         let heartBeatSoundEffect = getGameSound("HeartBeat")
-        if (heartBeatSoundEffect.play()){
+        if (heartBeatSoundEffect.playing){
             heartBeatSoundEffect.stop()
         }
         
@@ -360,7 +395,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     func showGameOver() {
         let heartBeatSoundEffect = getGameSound("HeartBeat")
-        if (heartBeatSoundEffect.play()){
+        if (heartBeatSoundEffect.playing){
             heartBeatSoundEffect.stop()
         }
         let gameOverSound = getGameSound("GameOver")
@@ -419,6 +454,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     func pauseGame() {
+        backgroundMusic.pause()
+        let heartBeatSoundEffect = getGameSound("HeartBeat")
+        if (heartBeatSoundEffect.playing){
+            heartBeatSoundEffect.pause()
+        }
         GameViewController.setIfPause(true)
         menuButton.userInteractionEnabled = false
         scene.animateGameSceneOut() {
@@ -477,13 +517,17 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             //                pauseGame()
             //                return
             //            }
-            
+            if (!backgroundMusic.playing){
+                backgroundMusic = getBackgroundMusicInIndex(Int(arc4random_uniform(UInt32(getCountOfAllBMG()))))
+                backgroundMusic.play()
+            }
             timeLeft = timeLeft - Double(timerInterval)
             
             showTimerLabel()
             let heartBeatSoundEffect = getGameSound("HeartBeat")
             if (timeLeft < 10.1){
-                if (!heartBeatSoundEffect.play()){
+                backgroundMusic.volume = 0.1
+                if (!heartBeatSoundEffect.playing){
                     heartBeatSoundEffect.play()
                 }
                 if (timerLabel.textColor == UIColor.redColor()) {
@@ -492,14 +536,14 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
                     timerLabel.textColor = UIColor.redColor()
                 }
             } else {
-                if (heartBeatSoundEffect.play()){
+                if (heartBeatSoundEffect.playing){
                     heartBeatSoundEffect.pause()
                 }
+                backgroundMusic.volume = bgmVolumn
                 timerLabel.textColor = UIColor.blackColor()
             }
 
             if timeLeft <= 0.1 {
-                heartBeatSoundEffect.stop()
                 if (timer.valid) {
                     timer.invalidate()
                 }

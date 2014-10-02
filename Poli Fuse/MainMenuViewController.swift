@@ -21,7 +21,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     var leaderboardIdentifier = ""
     var isAuthenticated = false
     var localPlayer : GKLocalPlayer!
-    var startGameSoundEffect : AVAudioPlayer!
+    var startGameSoundEffect:AVAudioPlayer!
     
     @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var button2: UIButton!
@@ -47,17 +47,18 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
         
-        let url = NSBundle.mainBundle().URLForResource("startGame", withExtension: "mp3")
-        startGameSoundEffect = AVAudioPlayer(contentsOfURL: url, error: nil)
-        startGameSoundEffect.numberOfLoops = 0
-        startGameSoundEffect.prepareToPlay()
-        
     }
     
     override func viewWillAppear(animated: Bool){
         super.viewWillAppear(animated)
         logoAnimationController()
         displayAllButtons()
+        
+        let url = NSBundle.mainBundle().URLForResource("startGame", withExtension: "mp3")
+        let errorPoint = NSErrorPointer()
+        startGameSoundEffect = AVAudioPlayer(contentsOfURL: url, error: errorPoint)
+        startGameSoundEffect.numberOfLoops = 0
+        startGameSoundEffect.prepareToPlay()
     }
     
     private func displayAllButtons(){
