@@ -265,6 +265,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         if chains.count == 0 {
             beginNextTurn()
             isChain = false
+            if (level.possibleSwaps.count == 0) {
+                shuffle()
+            }
             return
         }
         
@@ -292,9 +295,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         view.userInteractionEnabled = true
         updateGameInfo()
         AppDelegate.updateLocalHighScore(totalScore, level: currentLevel)
-        if (level.possibleSwaps.count == 0) {
-            shuffle()
-        }
     }
     
     func updateLabels() {

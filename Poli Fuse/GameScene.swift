@@ -85,10 +85,10 @@ class GameScene: SKScene {
             
             sprite.runAction(
                 SKAction.sequence([
-                    SKAction.waitForDuration(0.25, withRange: 0.5),
+                    SKAction.waitForDuration(0.1, withRange: 0.3),
                     SKAction.group([
-                        SKAction.fadeInWithDuration(0.25),
-                        SKAction.scaleTo(1.0, duration: 0.25)
+                        SKAction.fadeInWithDuration(0.15),
+                        SKAction.scaleTo(1.0, duration: 0.15)
                         ])
                     ]))
         }
@@ -417,8 +417,8 @@ class GameScene: SKScene {
     
     func removeAllPoliSprites() {
         polisLayer.removeAllChildren()
-        tilesLayer.removeAllChildren()
-        maskLayer.removeAllChildren()
+       // tilesLayer.removeAllChildren()
+       // maskLayer.removeAllChildren()
     }
     
     //    override func update(currentTime: CFTimeInterval) {
