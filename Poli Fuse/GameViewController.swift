@@ -372,9 +372,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         scene.animateGameSceneOut() {
             //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "beginGame")
             //self.view.addGestureRecognizer(self.tapGestureRecognizer)
+            self.gameOver()
         }
-
-        gameOver()
     }
     
     func resetGame() {

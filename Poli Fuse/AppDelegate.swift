@@ -121,6 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     class func updateScoreForGameCenterUser(totalScore : Int, currentLevel : Int){
         updateHighScoreRecords(totalScore, level: currentLevel)
+        updateLocalHighScore(totalScore, level:currentLevel)
         if isAuthenticated {
             if (!leaderBoard.isEmpty) {
                 gameCenterScore = GKScore(leaderboardIdentifier : leaderBoard, forPlayer : localPlayer.playerID)
