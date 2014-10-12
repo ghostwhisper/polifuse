@@ -72,7 +72,6 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         } else {
             button1 = initializeResumeButton(button1)
             button2 = initializePlayButton(button2)
-            button3.hidden = false
             hasSavedData = true
         }
         highScoreLabel.text = String(getTotalScore())
@@ -150,10 +149,10 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
                         AppDelegate.ifAuthenticated(self.isAuthenticated)
                         AppDelegate.setPlayerId(self.localPlayer.playerID)
                         AppDelegate.syncLocalPlayerFromGC(self.localPlayer)
-                        self.displayAllButtons()
                     } else {
                         self.isAuthenticated = false
                     }
+                    self.displayAllButtons()
                 }
             }
         }

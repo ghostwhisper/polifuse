@@ -102,6 +102,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //        iAdBanner.delegate = self
 //        iAdBanner.hidden = false
         closeAdsBannerButton.hidden = true
+    
         // Configure the view.
         let skView = view as SKView
         skView.multipleTouchEnabled = false
@@ -121,6 +122,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     private func showStartImageBan(){
         if (gameIsStarted == false) {
+            scene.userInteractionEnabled = false
             middleUIViewPanel.hidden = false;
             middleUIViewPanel.animationImages = [UIImage(named: "Ready"), UIImage(named: "Go")]
             middleUIViewPanel.animationDuration = 3
@@ -218,6 +220,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         //shuffleButton.hidden = true
         
         timeLeft += Double(level.timeLeft)
+        //timeLeft = Double(level.timeLeft)
         updateLabels()
         showTimerLabel()
         
@@ -289,6 +292,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         view.userInteractionEnabled = true
         updateGameInfo()
         AppDelegate.updateLocalHighScore(totalScore, level: currentLevel)
+        if (level.possibleSwaps.count == 0) {
+            shuffle()
+        }
     }
     
     func updateLabels() {
@@ -507,10 +513,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //    }
     
     func updateTimerLabel () {
-        if (middleUIViewPanel.isAnimating()){
+        if (middleUIViewPanel.isAnimating() && gameIsStarted == true){
             return
         } else {
             middleUIViewPanel.hidden = true
+            scene.userInteractionEnabled = true
         }
         if (!isPaused) {
             //            if iAdBanner.bannerViewActionInProgress {

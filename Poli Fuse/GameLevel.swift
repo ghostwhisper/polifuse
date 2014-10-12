@@ -14,7 +14,7 @@ let ChainScore = 10
 class GameLevel {
     private var polis = Array2D<Poli>(columns: NumColumns, rows: NumRows)
     private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
-    private var possibleSwaps = SetCollection<Swap>()
+    var possibleSwaps = SetCollection<Swap>()
     let targetScore: Int!
     let timeLeft: Float!
     var comboMultiplier: Int = 0  // private

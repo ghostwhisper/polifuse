@@ -9,6 +9,6 @@
               [1, 1, 1, 1, 1, 1, 1, 1, 1 ],
               [0, 1, 1, 0, 0, 0, 1, 1, 0 ] ],
 
-  "targetScore" : 100,
-  "timeLeft" : 30,
+  "targetScore" : 110,
+  "timeLeft" : 20,
 }

@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4D12244119DB8DFD002357F0 /* Ready@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D12244019DB8DFD002357F0 /* Ready@2x.png */; };
-		4D12244319DB8E8F002357F0 /* Go@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D12244219DB8E8F002357F0 /* Go@2x.png */; };
+		4D12244119DB8DFD002357F0 /* Ready@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D12244019DB8DFD002357F0 /* Ready@3x.png */; };
+		4D12244319DB8E8F002357F0 /* Go@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D12244219DB8E8F002357F0 /* Go@3x.png */; };
 		4D48C5AA19DCB3EE009B6374 /* Track 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D48C5A719DCB3EE009B6374 /* Track 1.mp3 */; };
 		4D48C5AB19DCB3EE009B6374 /* Track 12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D48C5A819DCB3EE009B6374 /* Track 12.mp3 */; };
 		4D48C5AC19DCB3EE009B6374 /* Track 13.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D48C5A919DCB3EE009B6374 /* Track 13.mp3 */; };
@@ -38,6 +38,14 @@
 		4D56416019DCD1340080E977 /* Yellow-Highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D56414619DCD1340080E977 /* Yellow-Highlighted@2x.png */; };
 		4D56416119DCD1340080E977 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D56414719DCD1340080E977 /* Yellow.png */; };
 		4D56416219DCD1340080E977 /* Yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D56414819DCD1340080E977 /* Yellow@2x.png */; };
+		4DB718EF19EA079B00A9323D /* Level_12.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718EE19EA079B00A9323D /* Level_12.json */; };
+		4DB718F119EA0C6100A9323D /* Level_13.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F019EA0C6100A9323D /* Level_13.json */; };
+		4DB718F319EA0E6600A9323D /* Level_14.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F219EA0E6600A9323D /* Level_14.json */; };
+		4DB718F519EA0ECD00A9323D /* Level_15.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F419EA0ECD00A9323D /* Level_15.json */; };
+		4DB718FA19EA125700A9323D /* Level_16.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F619EA125700A9323D /* Level_16.json */; };
+		4DB718FB19EA125700A9323D /* Level_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F719EA125700A9323D /* Level_17.json */; };
+		4DB718FC19EA125700A9323D /* Level_18.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F819EA125700A9323D /* Level_18.json */; };
+		4DB718FD19EA125700A9323D /* Level_19.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DB718F919EA125700A9323D /* Level_19.json */; };
 		4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0A19D649910093CC23 /* cash-in.wav */; };
 		4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0B19D649910093CC23 /* GetPoint.wav */; };
 		4DC0BF1019D649910093CC23 /* levelUp1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF0C19D649910093CC23 /* levelUp1.wav */; };
@@ -51,6 +59,16 @@
 		4DC0BF1F19D7B3E00093CC23 /* startGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF1E19D7B3DF0093CC23 /* startGame.mp3 */; };
 		4DC0BF2619D867700093CC23 /* 3913467301.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF2119D867700093CC23 /* 3913467301.ttf */; };
 		4DC0BF2819D867700093CC23 /* 4822485673.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DC0BF2419D867700093CC23 /* 4822485673.ttf */; };
+		4DE377D819E3871C00EA6171 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377CE19E3871C00EA6171 /* Level_2.json */; };
+		4DE377D919E3871C00EA6171 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377CF19E3871C00EA6171 /* Level_3.json */; };
+		4DE377DA19E3871C00EA6171 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D019E3871C00EA6171 /* Level_4.json */; };
+		4DE377DB19E3871C00EA6171 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D119E3871C00EA6171 /* Level_5.json */; };
+		4DE377DC19E3871C00EA6171 /* Level_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D219E3871C00EA6171 /* Level_6.json */; };
+		4DE377DD19E3871C00EA6171 /* Level_7.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D319E3871C00EA6171 /* Level_7.json */; };
+		4DE377DE19E3871C00EA6171 /* Level_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D419E3871C00EA6171 /* Level_8.json */; };
+		4DE377DF19E3871C00EA6171 /* Level_9.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D519E3871C00EA6171 /* Level_9.json */; };
+		4DE377E019E3871C00EA6171 /* Level_10.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D619E3871C00EA6171 /* Level_10.json */; };
+		4DE377E119E3871C00EA6171 /* Level_11.json in Resources */ = {isa = PBXBuildFile; fileRef = 4DE377D719E3871C00EA6171 /* Level_11.json */; };
 		4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */; };
 		4DF7E64F19D3AF450065D140 /* poli-fuse-app@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */; };
 		4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */; };
@@ -72,9 +90,6 @@
 		C943EA7519A4509600192171 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C943EA7419A4509600192171 /* MenuScene.swift */; };
 		C9723A6819887A39008F7685 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = C9723A6319887A39008F7685 /* Level_0.json */; };
 		C9723A6919887A39008F7685 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = C9723A6419887A39008F7685 /* Level_1.json */; };
-		C9723A6A19887A39008F7685 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = C9723A6519887A39008F7685 /* Level_2.json */; };
-		C9723A6B19887A39008F7685 /* Level_3.json in Resources */ = {isa = PBXBuildFile; fileRef = C9723A6619887A39008F7685 /* Level_3.json */; };
-		C9723A6C19887A39008F7685 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = C9723A6719887A39008F7685 /* Level_4.json */; };
 		C9723AFC19888621008F7685 /* PoliChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723AFB19888621008F7685 /* PoliChain.swift */; };
 		C9723AFE19888652008F7685 /* Poli.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723AFD19888652008F7685 /* Poli.swift */; };
 		C9723B0019888796008F7685 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9723AFF19888796008F7685 /* Array2D.swift */; };
@@ -154,8 +169,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4D12244019DB8DFD002357F0 /* Ready@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ready@2x.png"; sourceTree = "<group>"; };
-		4D12244219DB8E8F002357F0 /* Go@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Go@2x.png"; sourceTree = "<group>"; };
+		4D12244019DB8DFD002357F0 /* Ready@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ready@3x.png"; sourceTree = "<group>"; };
+		4D12244219DB8E8F002357F0 /* Go@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Go@3x.png"; sourceTree = "<group>"; };
 		4D48C5A719DCB3EE009B6374 /* Track 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Track 1.mp3"; sourceTree = "<group>"; };
 		4D48C5A819DCB3EE009B6374 /* Track 12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Track 12.mp3"; sourceTree = "<group>"; };
 		4D48C5A919DCB3EE009B6374 /* Track 13.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Track 13.mp3"; sourceTree = "<group>"; };
@@ -185,6 +200,14 @@
 		4D56414619DCD1340080E977 /* Yellow-Highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow-Highlighted@2x.png"; sourceTree = "<group>"; };
 		4D56414719DCD1340080E977 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
 		4D56414819DCD1340080E977 /* Yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow@2x.png"; sourceTree = "<group>"; };
+		4DB718EE19EA079B00A9323D /* Level_12.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_12.json; sourceTree = "<group>"; };
+		4DB718F019EA0C6100A9323D /* Level_13.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_13.json; sourceTree = "<group>"; };
+		4DB718F219EA0E6600A9323D /* Level_14.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_14.json; sourceTree = "<group>"; };
+		4DB718F419EA0ECD00A9323D /* Level_15.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_15.json; sourceTree = "<group>"; };
+		4DB718F619EA125700A9323D /* Level_16.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_16.json; sourceTree = "<group>"; };
+		4DB718F719EA125700A9323D /* Level_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_17.json; sourceTree = "<group>"; };
+		4DB718F819EA125700A9323D /* Level_18.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_18.json; sourceTree = "<group>"; };
+		4DB718F919EA125700A9323D /* Level_19.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_19.json; sourceTree = "<group>"; };
 		4DC0BF0A19D649910093CC23 /* cash-in.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "cash-in.wav"; sourceTree = "<group>"; };
 		4DC0BF0B19D649910093CC23 /* GetPoint.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GetPoint.wav; sourceTree = "<group>"; };
 		4DC0BF0C19D649910093CC23 /* levelUp1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = levelUp1.wav; sourceTree = "<group>"; };
@@ -198,6 +221,16 @@
 		4DC0BF1E19D7B3DF0093CC23 /* startGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = startGame.mp3; sourceTree = "<group>"; };
 		4DC0BF2119D867700093CC23 /* 3913467301.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3913467301.ttf; sourceTree = "<group>"; };
 		4DC0BF2419D867700093CC23 /* 4822485673.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 4822485673.ttf; sourceTree = "<group>"; };
+		4DE377CE19E3871C00EA6171 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
+		4DE377CF19E3871C00EA6171 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
+		4DE377D019E3871C00EA6171 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
+		4DE377D119E3871C00EA6171 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
+		4DE377D219E3871C00EA6171 /* Level_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_6.json; sourceTree = "<group>"; };
+		4DE377D319E3871C00EA6171 /* Level_7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_7.json; sourceTree = "<group>"; };
+		4DE377D419E3871C00EA6171 /* Level_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_8.json; sourceTree = "<group>"; };
+		4DE377D519E3871C00EA6171 /* Level_9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_9.json; sourceTree = "<group>"; };
+		4DE377D619E3871C00EA6171 /* Level_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_10.json; sourceTree = "<group>"; };
+		4DE377D719E3871C00EA6171 /* Level_11.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_11.json; sourceTree = "<group>"; };
 		4DF7E64819D3AF450065D140 /* poli-fuse-app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@2x.png"; sourceTree = "<group>"; };
 		4DF7E64919D3AF450065D140 /* poli-fuse-app@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-app@3x.png"; sourceTree = "<group>"; };
 		4DF7E64A19D3AF450065D140 /* poli-fuse-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poli-fuse-settings@2x.png"; sourceTree = "<group>"; };
@@ -224,9 +257,6 @@
 		C943EA7419A4509600192171 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		C9723A6319887A39008F7685 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
 		C9723A6419887A39008F7685 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
-		C9723A6519887A39008F7685 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
-		C9723A6619887A39008F7685 /* Level_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_3.json; sourceTree = "<group>"; };
-		C9723A6719887A39008F7685 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		C9723AFB19888621008F7685 /* PoliChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoliChain.swift; sourceTree = "<group>"; };
 		C9723AFD19888652008F7685 /* Poli.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Poli.swift; sourceTree = "<group>"; };
 		C9723AFF19888796008F7685 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
@@ -434,9 +464,24 @@
 			children = (
 				C9723A6319887A39008F7685 /* Level_0.json */,
 				C9723A6419887A39008F7685 /* Level_1.json */,
-				C9723A6519887A39008F7685 /* Level_2.json */,
-				C9723A6619887A39008F7685 /* Level_3.json */,
-				C9723A6719887A39008F7685 /* Level_4.json */,
+				4DE377CE19E3871C00EA6171 /* Level_2.json */,
+				4DE377CF19E3871C00EA6171 /* Level_3.json */,
+				4DE377D019E3871C00EA6171 /* Level_4.json */,
+				4DE377D119E3871C00EA6171 /* Level_5.json */,
+				4DE377D219E3871C00EA6171 /* Level_6.json */,
+				4DE377D319E3871C00EA6171 /* Level_7.json */,
+				4DE377D419E3871C00EA6171 /* Level_8.json */,
+				4DE377D519E3871C00EA6171 /* Level_9.json */,
+				4DE377D619E3871C00EA6171 /* Level_10.json */,
+				4DE377D719E3871C00EA6171 /* Level_11.json */,
+				4DB718EE19EA079B00A9323D /* Level_12.json */,
+				4DB718F019EA0C6100A9323D /* Level_13.json */,
+				4DB718F219EA0E6600A9323D /* Level_14.json */,
+				4DB718F419EA0ECD00A9323D /* Level_15.json */,
+				4DB718F619EA125700A9323D /* Level_16.json */,
+				4DB718F719EA125700A9323D /* Level_17.json */,
+				4DB718F819EA125700A9323D /* Level_18.json */,
+				4DB718F919EA125700A9323D /* Level_19.json */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -553,13 +598,13 @@
 				C9ACE13A19C29CD500785A92 /* Highscore.png */,
 				C9ACE13B19C29CD500785A92 /* Highscore@2x.png */,
 				C9ACE13C19C29CD500785A92 /* informationBar@2x.png */,
-				4D12244019DB8DFD002357F0 /* Ready@2x.png */,
+				4D12244019DB8DFD002357F0 /* Ready@3x.png */,
 				C9ACE13D19C29CD500785A92 /* LaunchImage.png */,
 				C9ACE13E19C29CD500785A92 /* LaunchImage@2x.png */,
 				C9ACE13F19C29CD500785A92 /* LevelComplete-Highlighted@2x.png */,
 				C9ACE14019C29CD500785A92 /* LevelComplete@2x.png */,
 				C9ACE14119C29CD500785A92 /* Logo1@2x.png */,
-				4D12244219DB8E8F002357F0 /* Go@2x.png */,
+				4D12244219DB8E8F002357F0 /* Go@3x.png */,
 				C9ACE14219C29CD500785A92 /* Logo2@2x.png */,
 				C9ACE14319C29CD500785A92 /* Menu-Highlighted@2x.png */,
 				C9ACE14419C29CD500785A92 /* Menu@2x.png */,
@@ -668,6 +713,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE377D919E3871C00EA6171 /* Level_3.json in Resources */,
 				4D56416019DCD1340080E977 /* Yellow-Highlighted@2x.png in Resources */,
 				4DF7E64E19D3AF450065D140 /* poli-fuse-app@2x.png in Resources */,
 				C9723BBD1988ACD1008F7685 /* Tile_14.png in Resources */,
@@ -681,19 +727,22 @@
 				C9723BB71988ACD1008F7685 /* Tile_11.png in Resources */,
 				C9ACE18519C29CD500785A92 /* PlayButton@2x.png in Resources */,
 				4DC0BF1519D7A6950093CC23 /* levelUp.wav in Resources */,
+				4DE377DD19E3871C00EA6171 /* Level_7.json in Resources */,
 				4DC0BF1019D649910093CC23 /* levelUp1.wav in Resources */,
 				4D56416119DCD1340080E977 /* Yellow.png in Resources */,
+				4DB718F319EA0E6600A9323D /* Level_14.json in Resources */,
 				C9ACE17D19C29CD500785A92 /* Menu-Highlighted@2x.png in Resources */,
 				C9723BC81988ACD1008F7685 /* Tile_5.png in Resources */,
 				4DC0BF0F19D649910093CC23 /* GetPoint.wav in Resources */,
 				4DC0BF1319D7A12B0093CC23 /* swipe.wav in Resources */,
 				4DC0BF1D19D7AE960093CC23 /* hurray.wav in Resources */,
 				C9723BBE1988ACD1008F7685 /* Tile_14@2x.png in Resources */,
-				4D12244319DB8E8F002357F0 /* Go@2x.png in Resources */,
+				4D12244319DB8E8F002357F0 /* Go@3x.png in Resources */,
 				4D56415F19DCD1340080E977 /* Yellow-Highlighted.png in Resources */,
 				4D56415A19DCD1340080E977 /* Orange@2x.png in Resources */,
 				4D56416219DCD1340080E977 /* Yellow@2x.png in Resources */,
 				4DF7E65119D3AF450065D140 /* poli-fuse-settings@3x.png in Resources */,
+				4DE377DE19E3871C00EA6171 /* Level_8.json in Resources */,
 				4D56415119DCD1340080E977 /* Blue.png in Resources */,
 				4DC0BF0E19D649910093CC23 /* cash-in.wav in Resources */,
 				C9ACE16919C29CD500785A92 /* Background@2x.png in Resources */,
@@ -709,22 +758,25 @@
 				C9ACE17819C29CD500785A92 /* LaunchImage@2x.png in Resources */,
 				C9723BB61988ACD1008F7685 /* Tile_10@2x.png in Resources */,
 				C9723BBF1988ACD1008F7685 /* Tile_15.png in Resources */,
+				4DE377E019E3871C00EA6171 /* Level_10.json in Resources */,
 				4D56415219DCD1340080E977 /* Blue@2x.png in Resources */,
+				4DB718FA19EA125700A9323D /* Level_16.json in Resources */,
 				C9ACE18419C29CD500785A92 /* PlayButton-Highlighted@2x.png in Resources */,
+				4DB718EF19EA079B00A9323D /* Level_12.json in Resources */,
 				4DC0BF2619D867700093CC23 /* 3913467301.ttf in Resources */,
 				C9ACE18019C29CD500785A92 /* MenuBackground@2x.png in Resources */,
 				C9723BC21988ACD1008F7685 /* Tile_2.png in Resources */,
 				C9ACE18119C29CD500785A92 /* MenuButton@2x.png in Resources */,
 				4D56415C19DCD1340080E977 /* Red-Highlighted@2x.png in Resources */,
 				4D48C5AC19DCB3EE009B6374 /* Track 13.mp3 in Resources */,
+				4DE377DF19E3871C00EA6171 /* Level_9.json in Resources */,
+				4DE377DA19E3871C00EA6171 /* Level_4.json in Resources */,
 				C9723BB81988ACD1008F7685 /* Tile_11@2x.png in Resources */,
 				C9ACE17F19C29CD500785A92 /* MenuBackground.png in Resources */,
 				4D56415919DCD1340080E977 /* Orange.png in Resources */,
 				4D56415619DCD1340080E977 /* Green@2x.png in Resources */,
 				C9ACE17319C29CD500785A92 /* Highscore-Highlighted@2x.png in Resources */,
-				C9723A6A19887A39008F7685 /* Level_2.json in Resources */,
 				C9723BC91988ACD1008F7685 /* Tile_5@2x.png in Resources */,
-				C9723A6B19887A39008F7685 /* Level_3.json in Resources */,
 				4DF7E65919D4AB7E0065D140 /* GetItem.mp3 in Resources */,
 				4DF7E65019D3AF450065D140 /* poli-fuse-settings@2x.png in Resources */,
 				C9723BB31988ACD1008F7685 /* MaskTile@2x.png in Resources */,
@@ -738,6 +790,7 @@
 				C90B262619815CEF005288CD /* MenuScene.sks in Resources */,
 				4D56415719DCD1340080E977 /* Orange-Highlighted.png in Resources */,
 				4D56414E19DCD1340080E977 /* 8 line bomb.png in Resources */,
+				4DE377DB19E3871C00EA6171 /* Level_5.json in Resources */,
 				C9723BBC1988ACD1008F7685 /* Tile_13@2x.png in Resources */,
 				C9ACE17E19C29CD500785A92 /* Menu@2x.png in Resources */,
 				C9ACE18A19C29CD500785A92 /* ScoreButton-Highlighted@2x.png in Resources */,
@@ -749,9 +802,13 @@
 				C9723BB21988ACD1008F7685 /* MaskTile.png in Resources */,
 				C9ACE17419C29CD500785A92 /* Highscore.png in Resources */,
 				4DF7E65319D3AF450065D140 /* poli-fuse-spotlight@3x.png in Resources */,
+				4DB718FC19EA125700A9323D /* Level_18.json in Resources */,
 				4D56415019DCD1340080E977 /* Blue-Highlighted@2x.png in Resources */,
 				4D56415819DCD1340080E977 /* Orange-Highlighted@2x.png in Resources */,
+				4DB718F519EA0ECD00A9323D /* Level_15.json in Resources */,
 				4DC0BF1B19D7ACA80093CC23 /* addPoli.wav in Resources */,
+				4DE377DC19E3871C00EA6171 /* Level_6.json in Resources */,
+				4DE377E119E3871C00EA6171 /* Level_11.json in Resources */,
 				C9723BC11988ACD1008F7685 /* Tile_1@2x.png in Resources */,
 				C9ACE17519C29CD500785A92 /* Highscore@2x.png in Resources */,
 				C9ACE16D19C29CD500785A92 /* ExitButton-Highlighted@2x.png in Resources */,
@@ -765,7 +822,9 @@
 				4D56414F19DCD1340080E977 /* Blue-Highlighted.png in Resources */,
 				4DC0BF1119D649910093CC23 /* multipleScores.wav in Resources */,
 				C9ACE17C19C29CD500785A92 /* Logo2@2x.png in Resources */,
+				4DB718FB19EA125700A9323D /* Level_17.json in Resources */,
 				4D56415519DCD1340080E977 /* Green.png in Resources */,
+				4DE377D819E3871C00EA6171 /* Level_2.json in Resources */,
 				4D48C5AB19DCB3EE009B6374 /* Track 12.mp3 in Resources */,
 				4D56414D19DCD1340080E977 /* 8 line bomb-Highlighted@2x.png in Resources */,
 				4DF7E65B19D4AC800065D140 /* HeartBeat.mp3 in Resources */,
@@ -776,6 +835,7 @@
 				C9ACE18C19C29CD500785A92 /* Stage@2x.png in Resources */,
 				C9723BC31988ACD1008F7685 /* Tile_2@2x.png in Resources */,
 				C9723BB41988ACD1008F7685 /* Tile_1.png in Resources */,
+				4DB718FD19EA125700A9323D /* Level_19.json in Resources */,
 				C9723BC01988ACD1008F7685 /* Tile_15@2x.png in Resources */,
 				4DC0BF1919D7AC570093CC23 /* falling.wav in Resources */,
 				C9723BB51988ACD1008F7685 /* Tile_10.png in Resources */,
@@ -784,8 +844,8 @@
 				C9ACE17A19C29CD500785A92 /* LevelComplete@2x.png in Resources */,
 				C9ACE17719C29CD500785A92 /* LaunchImage.png in Resources */,
 				C9ACE16819C29CD500785A92 /* Background.png in Resources */,
-				4D12244119DB8DFD002357F0 /* Ready@2x.png in Resources */,
-				C9723A6C19887A39008F7685 /* Level_4.json in Resources */,
+				4DB718F119EA0C6100A9323D /* Level_13.json in Resources */,
+				4D12244119DB8DFD002357F0 /* Ready@3x.png in Resources */,
 				4DF7E65219D3AF450065D140 /* poli-fuse-spotlight@2x.png in Resources */,
 				C9723BC61988ACD1008F7685 /* Tile_4.png in Resources */,
 			);

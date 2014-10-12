@@ -387,18 +387,18 @@ class GameScene: SKScene {
             y: (firstSprite.position.y + lastSprite.position.y)/2 - 8 - TileHeight * CGFloat(NumRows) / 2)
         // Add a label for the score that slowly floats up.
         let scoreLabel = SKLabelNode(fontNamed: "AgencyFB-Bold")
-        scoreLabel.fontSize = 16
+        scoreLabel.fontSize = 30
         scoreLabel.text = NSString(format: "%ld", chain.score)
         scoreLabel.position = centerPosition
         scoreLabel.zPosition = 300
         scoreLabel.fontColor = UIColor.blackColor()
         gameLayer.addChild(scoreLabel)
         
-        let moveUpAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.6)
-        let moveAction = SKAction.moveTo(scoreLabelLocation, duration: 0.3)
+        let moveUpAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.5)
+        //let moveAction = SKAction.moveTo(scoreLabelLocation, duration: 0.3)
 
-        moveAction.timingMode = .EaseIn
-        scoreLabel.runAction(SKAction.sequence([moveUpAction,moveAction, SKAction.removeFromParent()]))
+        //moveAction.timingMode = .EaseIn
+        scoreLabel.runAction(SKAction.sequence([moveUpAction, SKAction.removeFromParent()]))
     }
     
     func animateGameSceneOut(completion: () -> ()) {
