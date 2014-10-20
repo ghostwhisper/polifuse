@@ -46,6 +46,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     @IBOutlet var middleUIViewPanel: UIImageView!
     @IBOutlet var resumeButton: UIImageView!
     @IBOutlet weak var highScoreImage: UIImageView!
+    @IBOutlet weak var scoreResultPage: UIImageView!
+    @IBOutlet weak var scorePlaceHolderInScoreResultPage: UILabel!
+    @IBOutlet weak var levelPlaceHolderInScoreResultPage: UILabel!
     
     //@IBOutlet var iAdBanner: ADBannerView!
     
@@ -67,8 +70,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     @IBAction func exitButtonPressed(AnyObject) {
-        gameOver()
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        terminateGameAndBackHomePage()
     }
     
     
@@ -106,6 +108,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         // Configure the view.
         let skView = view as SKView
         skView.multipleTouchEnabled = false
+        hideScoreResultPage()
+        rotateLevelAndScorePlaceHolder()
         
         exitButton.hidden = true
         highScore.hidden = true
@@ -207,7 +211,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             showFinishAllLevels()
             return
         }
-        
+        scene.cleanLayers()
         resetGame()
         
         shuffle()
@@ -405,19 +409,19 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         }
         let gameOverSound = getGameSound("GameOver")
         gameOverSound.play()
-        highScoreImage.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
-        highScoreImage.animationDuration = 0.5
-        highScoreImage.startAnimating()
+//        highScoreImage.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
+//        highScoreImage.animationDuration = 0.5
+//        highScoreImage.startAnimating()
         highScoreImage.hidden = false
         
         highScore.text = String(totalScore)
         highScore.hidden = false
 
         timerLabel.hidden = true
-        exitButton.hidden = false
+//        exitButton.hidden = false
         scoreLabel.hidden = true
         
-        middleUIViewPanel.image = UIImage(named: "GameOver")
+//        middleUIViewPanel.image = UIImage(named: "GameOver")
         middleUIViewPanel.hidden = false
         //scene.userInteractionEnabled = false
         menuButton.userInteractionEnabled = false
@@ -425,6 +429,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         scene.animateGameSceneOut() {
             //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "beginGame")
             //self.view.addGestureRecognizer(self.tapGestureRecognizer)
+            self.showScoreResultPage()
+            self.initScoreResultPageImage()
         }
         updateLabels()
     }
@@ -585,5 +591,33 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             return "0\(number)"
         }
         return String(number)
+    }
+    
+    private func rotateLevelAndScorePlaceHolder() {
+        scorePlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.5)
+        levelPlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.5)
+    }
+    
+    func showScoreResultPage(){
+        scorePlaceHolderInScoreResultPage.hidden = false
+        levelPlaceHolderInScoreResultPage.hidden = false
+        scoreResultPage.hidden = false
+    }
+    
+    func hideScoreResultPage(){
+        scorePlaceHolderInScoreResultPage.hidden = true
+        levelPlaceHolderInScoreResultPage.hidden = true
+        scoreResultPage.hidden = true
+    }
+    
+    func initScoreResultPageImage(){
+        scoreResultPage.image = UIImage(named: "Background")
+        scoreResultPage.userInteractionEnabled = true
+        scoreResultPage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "terminateGameAndBackHomePage"))
+    }
+    
+    func terminateGameAndBackHomePage(){
+        gameOver()
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 }

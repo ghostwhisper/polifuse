@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="pCG-yu-V2x">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="3913467301.ttf">
+            <string>AgencyFB-Bold</string>
+            <string>AgencyFB-Bold</string>
             <string>AgencyFB-Bold</string>
             <string>AgencyFB-Bold</string>
             <string>AgencyFB-Bold</string>
@@ -116,9 +117,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FlyingPoli.png" id="YNw-Wg-Q5k">
-                                <rect key="frame" x="117" y="44" width="82.5" height="44"/>
+                                <rect key="frame" x="117" y="44" width="83" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="mPl-Sb-T7w" userLabel="ScoreResultPage">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <inset key="insetFor6xAndEarlier" minX="0.0" minY="0.0" maxX="0.0" maxY="88"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O3w-eH-lbX" userLabel="ScoreResultPage.ScorePlaceHolder">
+                                <rect key="frame" x="158" y="443" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AgencyFB-Bold" family="Agency FB" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NGr-ml-XAD" userLabel="ScoreResultPage.LevelPlaceHolder">
+                                <rect key="frame" x="158" y="402" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AgencyFB-Bold" family="Agency FB" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -129,11 +149,14 @@
                         <outlet property="highScore" destination="TRO-GM-fOt" id="0mX-4c-z6s"/>
                         <outlet property="highScoreImage" destination="6jm-Ve-5v2" id="lDX-Vn-kxI"/>
                         <outlet property="levelLabel" destination="07M-kd-vtw" id="bCc-yq-M6D"/>
+                        <outlet property="levelPlaceHolderInScoreResultPage" destination="NGr-ml-XAD" id="mTM-tC-ftS"/>
                         <outlet property="menuButton" destination="ZKZ-dh-yY8" id="YA7-Cx-kCv"/>
                         <outlet property="middleUIViewPanel" destination="5Bx-hI-6qh" id="jR8-Wt-XRn"/>
                         <outlet property="resumeButton" destination="PDG-Iy-7F1" id="SMu-fG-VFc"/>
                         <outlet property="scoreLabel" destination="FuZ-cJ-8gb" id="0BX-qe-bQv"/>
                         <outlet property="scorePanel" destination="YNw-Wg-Q5k" id="JjA-Xn-pHk"/>
+                        <outlet property="scorePlaceHolderInScoreResultPage" destination="O3w-eH-lbX" id="lfd-Zr-XxJ"/>
+                        <outlet property="scoreResultPage" destination="mPl-Sb-T7w" id="fau-6N-9ym"/>
                         <outlet property="targetLabel" destination="bgz-3k-1BG" id="Ok4-xF-Esg"/>
                         <outlet property="timerImage" destination="uLn-7P-Im0" id="F3j-Bg-vv6"/>
                         <outlet property="timerLabel" destination="XWd-Xd-QAj" id="pFo-Uf-35G"/>
@@ -141,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="-496"/>
+            <point key="canvasLocation" x="1003" y="-496"/>
         </scene>
         <!--rootNavagation-->
         <scene sceneID="Xq1-RQ-fYv">

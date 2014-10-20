@@ -421,6 +421,12 @@ class GameScene: SKScene {
        // maskLayer.removeAllChildren()
     }
     
+    func cleanLayers(){
+        removeAllPoliSprites()
+        tilesLayer.removeAllChildren()
+        maskLayer.removeAllChildren()
+    }
+    
     //    override func update(currentTime: CFTimeInterval) {
     //        /* Called before each frame is rendered */
     //    }
