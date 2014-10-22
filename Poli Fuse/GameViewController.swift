@@ -85,7 +85,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
+        return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -108,6 +108,16 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         // Configure the view.
         let skView = view as SKView
         skView.multipleTouchEnabled = false
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenHeight = screenSize.height;
+        if (screenHeight == 480) {
+            let x = scorePlaceHolderInScoreResultPage.center.x
+            let y = scorePlaceHolderInScoreResultPage.center.y
+            scorePlaceHolderInScoreResultPage.center = CGPointMake(x, y - 12.8)
+            let x1 = levelPlaceHolderInScoreResultPage.center.x
+            let y1 = levelPlaceHolderInScoreResultPage.center.y
+            levelPlaceHolderInScoreResultPage.center = CGPointMake(x1, y1 - 9.5)
+        }
         hideScoreResultPage()
         rotateLevelAndScorePlaceHolder()
         
@@ -128,7 +138,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         if (gameIsStarted == false) {
             scene.userInteractionEnabled = false
             middleUIViewPanel.hidden = false;
-            middleUIViewPanel.animationImages = [UIImage(named: "Ready"), UIImage(named: "Go")]
+            middleUIViewPanel.animationImages = [UIImage(named: "Ready")!, UIImage(named: "Go")!]
             middleUIViewPanel.animationDuration = 3
             middleUIViewPanel.animationRepeatCount = 1
             middleUIViewPanel.startAnimating()
@@ -355,24 +365,23 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         }
         
         getGameSound("hurray").play()
+
+//        highScoreImage.hidden = false
+//        
+//        highScore.text = String(totalScore)
+//        highScore.hidden = false
+//        
+//        timerLabel.hidden = true
+//        exitButton.hidden = false
+//        scoreLabel.hidden = true
         
-        highScoreImage.animationImages = [UIImage(named: "Highscore"), UIImage(named: "Highscore-Highlighted")]
-        highScoreImage.animationDuration = 0.5
-        highScoreImage.startAnimating()
-        highScoreImage.hidden = false
-        
-        highScore.text = String(totalScore)
-        highScore.hidden = false
-        
-        timerLabel.hidden = true
-        exitButton.hidden = false
-        scoreLabel.hidden = true
-        
-        middleUIViewPanel.image = UIImage(named: "GameOver")
-        middleUIViewPanel.hidden = false
+//        middleUIViewPanel.image = UIImage(named: "GameOver")
+//        middleUIViewPanel.hidden = false
         //scene.userInteractionEnabled = false
-        menuButton.userInteractionEnabled = false
-        
+        initScoreResultPageImage("GameOver_final")
+        scorePlaceHolderInScoreResultPage.text = String(totalScore)
+        scorePlaceHolderInScoreResultPage.hidden = false
+        scoreResultPage.hidden = false
         scene.animateGameSceneOut() {
             //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "beginGame")
             //self.view.addGestureRecognizer(self.tapGestureRecognizer)
@@ -392,10 +401,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     
     func showLevelUp(completion: () -> ()) {
         GameViewController.setIfPause(true)
-        middleUIViewPanel.animationImages = [UIImage(named: "LevelComplete"), UIImage(named: "LevelComplete-Highlighted")]
-        middleUIViewPanel.animationDuration = 0.5
+        let image = UIImage.animatedImageWithImages([UIImage(named: "LevelComplete")!, UIImage(named: "LevelComplete-Highlighted")!], duration: 0.5)
+        middleUIViewPanel.image = image
         middleUIViewPanel.hidden = false
-        middleUIViewPanel.startAnimating()
         scene.userInteractionEnabled = false
         //shuffleButton.hidden = true
         
@@ -416,7 +424,6 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         
         highScore.text = String(totalScore)
         highScore.hidden = false
-
         timerLabel.hidden = true
 //        exitButton.hidden = false
         scoreLabel.hidden = true
@@ -429,9 +436,11 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         scene.animateGameSceneOut() {
             //self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "beginGame")
             //self.view.addGestureRecognizer(self.tapGestureRecognizer)
-            self.showScoreResultPage()
-            self.initScoreResultPageImage()
         }
+        let numberOfFile = (self.currentLevel - self.currentLevel%4)/4
+        let fileName = NSString(format: "GameOver_%ld", numberOfFile)
+        self.showScoreResultPage()
+        self.initScoreResultPageImage(fileName)
         updateLabels()
     }
     
@@ -480,9 +489,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     func showPauseMenu() {
         resumeButton.hidden = false
         resumeButton.userInteractionEnabled = true
-        resumeButton.animationImages = [UIImage(named: "Resume"), UIImage(named: "Resume-Highlighted")]
-        resumeButton.animationDuration = 0.7
-        resumeButton.startAnimating()
+        let image = UIImage.animatedImageWithImages([UIImage(named: "Resume")!, UIImage(named: "Resume-Highlighted")!], duration: 0.7)
+        resumeButton.image = image
         resumeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "resumeGame"))
         
         exitButton.hidden = false
@@ -594,12 +602,14 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     private func rotateLevelAndScorePlaceHolder() {
-        scorePlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.5)
-        levelPlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.5)
+        scorePlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.33)
+        levelPlaceHolderInScoreResultPage.transform = CGAffineTransformMakeRotation(-0.33)
     }
     
     func showScoreResultPage(){
+        scorePlaceHolderInScoreResultPage.text = String(totalScore)
         scorePlaceHolderInScoreResultPage.hidden = false
+        levelPlaceHolderInScoreResultPage.text = String(currentLevel + 1)
         levelPlaceHolderInScoreResultPage.hidden = false
         scoreResultPage.hidden = false
     }
@@ -610,8 +620,8 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         scoreResultPage.hidden = true
     }
     
-    func initScoreResultPageImage(){
-        scoreResultPage.image = UIImage(named: "Background")
+    func initScoreResultPageImage(fileName:String){
+        scoreResultPage.image = UIImage(named: fileName)
         scoreResultPage.userInteractionEnabled = true
         scoreResultPage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "terminateGameAndBackHomePage"))
     }

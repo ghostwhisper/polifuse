@@ -20,16 +20,16 @@ enum PoliType: Int, Printable {
         "Red",
         "Green"
         ]
-        return spriteNames[toRaw() - 1]
+        return spriteNames[rawValue - 1]
     }
     
     var highlightedSpriteName: String {
     let highlightedSpriteNames = ["Orange-Highlighted", "Blue-Highlighted", "Yellow-Highlighted", "Red-Highlighted", "Green-Highlighted" ]
-        return highlightedSpriteNames[toRaw() - 1]
+        return highlightedSpriteNames[rawValue - 1]
     }
     
     static func random() -> PoliType {
-        return PoliType.fromRaw(Int(arc4random_uniform(5)) + 1)!
+        return PoliType(rawValue: Int(arc4random_uniform(5)) + 1)!
     }
     
     var description: String {

@@ -48,7 +48,7 @@ class GameScene: SKScene {
         
         let layerPosition = CGPoint(
             x: -TileWidth * CGFloat(NumColumns) / 2,
-            y: -TileHeight * CGFloat(NumRows) / 1.8)
+            y: -TileHeight * CGFloat(NumRows) / 1.7)
         
         tilesLayer.position = layerPosition
         gameLayer.addChild(tilesLayer)

@@ -88,9 +88,9 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
     override func supportedInterfaceOrientations() -> Int {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.toRaw())
+            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
         } else {
-            return Int(UIInterfaceOrientationMask.All.toRaw())
+            return Int(UIInterfaceOrientationMask.All.rawValue)
         }
     }
     
@@ -160,9 +160,8 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
     func logoAnimationController(){
         logoImage.userInteractionEnabled = false
-        logoImage.animationImages = [UIImage(named: "Logo1"), UIImage(named: "Logo2")]
-        logoImage.animationDuration = 1.0
-        logoImage.startAnimating()
+        let image = UIImage.animatedImageWithImages([UIImage(named: "Logo1")!, UIImage(named: "Logo2")!], duration: 1.0)
+        logoImage.image = image
     }
     
     func setButtonBackgroundImage(button: UIButton, image: UIImage, highlightImage : UIImage) -> UIButton {
@@ -219,10 +218,10 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
     
     func initializePlayButton(button: UIButton) -> UIButton {
         button.hidden = false
-        return setButtonBackgroundImage(button, image: playButtonImage, highlightImage :playButtonImageHighlighted)
+        return setButtonBackgroundImage(button, image: playButtonImage!, highlightImage :playButtonImageHighlighted!)
     }
     func initializeResumeButton(button: UIButton) -> UIButton {
-        return setButtonBackgroundImage(button, image: resumeButtonImage, highlightImage :resumeButtonImageHighlighted)
+        return setButtonBackgroundImage(button, image: resumeButtonImage!, highlightImage :resumeButtonImageHighlighted!)
     }
     
     func initializeScoreButton(button: UIButton) -> UIButton {
@@ -231,7 +230,7 @@ class MenuViewController: UIViewController, GKGameCenterControllerDelegate {
         } else {
             button.hidden = false
         }
-        return setButtonBackgroundImage(button, image: scoreboardButtonImage, highlightImage :scoreboardButtonImageHighlighted)
+        return setButtonBackgroundImage(button, image: scoreboardButtonImage!, highlightImage :scoreboardButtonImageHighlighted!)
     }
     
 }
