@@ -353,6 +353,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
         totalScore = 0
         timeLeft = 0
         userCloseAds = false
+        AppDelegate.saveLastLevelStatus(totalScore, level: currentLevel, timeLeft : timeLeft)
         AppDelegate.deleteLocalLastLevelRecord()
     }
     

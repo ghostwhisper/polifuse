@@ -69,8 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     class func saveLastLevelStatus(scores : Int, level : Int, timeLeft: Double){
+        lastLevelStatus = ["scores": String(scores), "level": String(level), "timeLeft": NSString(format: "%.2f", timeLeft)]
         if (level > 0) {
-            lastLevelStatus = ["scores": String(scores), "level": String(level), "timeLeft": NSString(format: "%.2f", timeLeft)]
             var result = lastLevelStatus as NSDictionary
             var data = NSKeyedArchiver.archivedDataWithRootObject(result)
             NSUserDefaults.standardUserDefaults().setObject(data, forKey: escapeUserId("lastLevel_\(playerID)"))
