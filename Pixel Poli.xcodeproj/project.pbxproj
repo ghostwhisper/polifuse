@@ -252,7 +252,7 @@
 		4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GetItem.mp3; sourceTree = "<group>"; };
 		4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HeartBeat.mp3; sourceTree = "<group>"; };
 		4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
-		C90B261E19815CEF005288CD /* Poli Fuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poli Fuse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90B261E19815CEF005288CD /* Pixel Poli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixel Poli.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B262219815CEF005288CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C90B262319815CEF005288CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C90B262519815CEF005288CD /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 		C90B262919815CEF005288CD /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		C90B262C19815CEF005288CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C90B262E19815CEF005288CD /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
-		C90B263419815CEF005288CD /* Poli FuseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Poli FuseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90B263419815CEF005288CD /* Pixel PoliTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pixel PoliTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B263919815CEF005288CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C90B263A19815CEF005288CD /* Poli_FuseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poli_FuseTests.swift; sourceTree = "<group>"; };
 		C90B264419815D28005288CD /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -418,8 +418,8 @@
 		C90B261F19815CEF005288CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C90B261E19815CEF005288CD /* Poli Fuse.app */,
-				C90B263419815CEF005288CD /* Poli FuseTests.xctest */,
+				C90B261E19815CEF005288CD /* Pixel Poli.app */,
+				C90B263419815CEF005288CD /* Pixel PoliTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -645,9 +645,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C90B261D19815CEF005288CD /* Poli Fuse */ = {
+		C90B261D19815CEF005288CD /* Pixel Poli */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C90B263E19815CEF005288CD /* Build configuration list for PBXNativeTarget "Poli Fuse" */;
+			buildConfigurationList = C90B263E19815CEF005288CD /* Build configuration list for PBXNativeTarget "Pixel Poli" */;
 			buildPhases = (
 				C90B261A19815CEF005288CD /* Sources */,
 				C90B261B19815CEF005288CD /* Frameworks */,
@@ -657,14 +657,14 @@
 			);
 			dependencies = (
 			);
-			name = "Poli Fuse";
+			name = "Pixel Poli";
 			productName = "Poli Fuse";
-			productReference = C90B261E19815CEF005288CD /* Poli Fuse.app */;
+			productReference = C90B261E19815CEF005288CD /* Pixel Poli.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C90B263319815CEF005288CD /* Poli FuseTests */ = {
+		C90B263319815CEF005288CD /* Pixel PoliTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C90B264119815CEF005288CD /* Build configuration list for PBXNativeTarget "Poli FuseTests" */;
+			buildConfigurationList = C90B264119815CEF005288CD /* Build configuration list for PBXNativeTarget "Pixel PoliTests" */;
 			buildPhases = (
 				C90B263019815CEF005288CD /* Sources */,
 				C90B263119815CEF005288CD /* Frameworks */,
@@ -675,9 +675,9 @@
 			dependencies = (
 				C90B263619815CEF005288CD /* PBXTargetDependency */,
 			);
-			name = "Poli FuseTests";
+			name = "Pixel PoliTests";
 			productName = "Poli FuseTests";
-			productReference = C90B263419815CEF005288CD /* Poli FuseTests.xctest */;
+			productReference = C90B263419815CEF005288CD /* Pixel PoliTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -720,8 +720,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C90B261D19815CEF005288CD /* Poli Fuse */,
-				C90B263319815CEF005288CD /* Poli FuseTests */,
+				C90B261D19815CEF005288CD /* Pixel Poli */,
+				C90B263319815CEF005288CD /* Pixel PoliTests */,
 			);
 		};
 /* End PBXProject section */
@@ -917,7 +917,7 @@
 /* Begin PBXTargetDependency section */
 		C90B263619815CEF005288CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C90B261D19815CEF005288CD /* Poli Fuse */;
+			target = C90B261D19815CEF005288CD /* Pixel Poli */;
 			targetProxy = C90B263519815CEF005288CD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1022,7 +1022,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel Poli";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -1038,7 +1038,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel Poli";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -1057,7 +1057,7 @@
 				);
 				INFOPLIST_FILE = "Poli FuseTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel PoliTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -1072,7 +1072,7 @@
 				);
 				INFOPLIST_FILE = "Poli FuseTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pixel PoliTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
@@ -1089,7 +1089,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C90B263E19815CEF005288CD /* Build configuration list for PBXNativeTarget "Poli Fuse" */ = {
+		C90B263E19815CEF005288CD /* Build configuration list for PBXNativeTarget "Pixel Poli" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C90B263F19815CEF005288CD /* Debug */,
@@ -1098,7 +1098,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C90B264119815CEF005288CD /* Build configuration list for PBXNativeTarget "Poli FuseTests" */ = {
+		C90B264119815CEF005288CD /* Build configuration list for PBXNativeTarget "Pixel PoliTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C90B264219815CEF005288CD /* Debug */,

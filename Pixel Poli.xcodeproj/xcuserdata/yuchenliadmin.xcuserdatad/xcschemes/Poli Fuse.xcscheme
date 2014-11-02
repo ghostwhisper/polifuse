@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C90B261D19815CEF005288CD"
-               BuildableName = "Poli Fuse.app"
-               BlueprintName = "Poli Fuse"
-               ReferencedContainer = "container:Poli Fuse.xcodeproj">
+               BuildableName = "Pixel Poli.app"
+               BlueprintName = "Pixel Poli"
+               ReferencedContainer = "container:Pixel Poli.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C90B263319815CEF005288CD"
-               BuildableName = "Poli FuseTests.xctest"
-               BlueprintName = "Poli FuseTests"
-               ReferencedContainer = "container:Poli Fuse.xcodeproj">
+               BuildableName = "Pixel PoliTests.xctest"
+               BlueprintName = "Pixel PoliTests"
+               ReferencedContainer = "container:Pixel Poli.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C90B263319815CEF005288CD"
-               BuildableName = "Poli FuseTests.xctest"
-               BlueprintName = "Poli FuseTests"
-               ReferencedContainer = "container:Poli Fuse.xcodeproj">
+               BuildableName = "Pixel PoliTests.xctest"
+               BlueprintName = "Pixel PoliTests"
+               ReferencedContainer = "container:Pixel Poli.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C90B261D19815CEF005288CD"
-            BuildableName = "Poli Fuse.app"
-            BlueprintName = "Poli Fuse"
-            ReferencedContainer = "container:Poli Fuse.xcodeproj">
+            BuildableName = "Pixel Poli.app"
+            BlueprintName = "Pixel Poli"
+            ReferencedContainer = "container:Pixel Poli.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C90B261D19815CEF005288CD"
-            BuildableName = "Poli Fuse.app"
-            BlueprintName = "Poli Fuse"
-            ReferencedContainer = "container:Poli Fuse.xcodeproj">
+            BuildableName = "Pixel Poli.app"
+            BlueprintName = "Pixel Poli"
+            ReferencedContainer = "container:Pixel Poli.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C90B261D19815CEF005288CD"
-            BuildableName = "Poli Fuse.app"
-            BlueprintName = "Poli Fuse"
-            ReferencedContainer = "container:Poli Fuse.xcodeproj">
+            BuildableName = "Pixel Poli.app"
+            BlueprintName = "Pixel Poli"
+            ReferencedContainer = "container:Pixel Poli.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
