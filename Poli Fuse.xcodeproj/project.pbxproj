@@ -252,7 +252,7 @@
 		4DF7E65819D4AB7E0065D140 /* GetItem.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GetItem.mp3; sourceTree = "<group>"; };
 		4DF7E65A19D4AC800065D140 /* HeartBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HeartBeat.mp3; sourceTree = "<group>"; };
 		4DF7E65C19D4AEA50065D140 /* GameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameOver.mp3; sourceTree = "<group>"; };
-		C90B261E19815CEF005288CD /* Poli Fuse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poli Fuse.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C90B261E19815CEF005288CD /* Pixel Poli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pixel Poli.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C90B262219815CEF005288CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C90B262319815CEF005288CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C90B262519815CEF005288CD /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -418,7 +418,7 @@
 		C90B261F19815CEF005288CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C90B261E19815CEF005288CD /* Poli Fuse.app */,
+				C90B261E19815CEF005288CD /* Pixel Poli.app */,
 				C90B263419815CEF005288CD /* Pixel PoliTests.xctest */,
 			);
 			name = Products;
@@ -659,7 +659,7 @@
 			);
 			name = "Pixel Poli";
 			productName = "Poli Fuse";
-			productReference = C90B261E19815CEF005288CD /* Poli Fuse.app */;
+			productReference = C90B261E19815CEF005288CD /* Pixel Poli.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C90B263319815CEF005288CD /* Pixel PoliTests */ = {
@@ -1022,7 +1022,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "Poli Fuse";
+				PRODUCT_NAME = "Pixel Poli";
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
