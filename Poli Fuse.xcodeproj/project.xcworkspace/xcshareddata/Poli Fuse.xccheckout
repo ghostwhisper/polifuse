@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>81F9288C-56FD-4732-B620-A9FD703A2633</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Poli Fuse</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F7D046A70912EC148E61F224DD6C483144E8FE4D</key>
+		<string>https://github.com/ghostwhisper/polifuse.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Poli Fuse.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F7D046A70912EC148E61F224DD6C483144E8FE4D</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ghostwhisper/polifuse.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F7D046A70912EC148E61F224DD6C483144E8FE4D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F7D046A70912EC148E61F224DD6C483144E8FE4D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Poli%20Fuse</string>
+		</dict>
+	</array>
+</dict>
+</plist>
