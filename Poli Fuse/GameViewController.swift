@@ -256,7 +256,9 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
     }
     
     class func pauseBGM(){
-        backgroundMusic.pause()
+        if (backgroundMusic != nil) {
+            backgroundMusic.pause()
+        }
     }
     
     func handleSwipe(swap: Swap) {
