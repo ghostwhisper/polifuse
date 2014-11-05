@@ -221,6 +221,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
             showFinishAllLevels()
             return
         }
+
         scene.cleanLayers()
         resetGame()
         
@@ -382,6 +383,7 @@ class GameViewController: UIViewController{// , ADBannerViewDelegate{
 //        middleUIViewPanel.hidden = false
         //scene.userInteractionEnabled = false
         initScoreResultPageImage("GameOver_final")
+        totalScore = totalScore + Int(timeLeft) * 10
         scorePlaceHolderInScoreResultPage.text = String(totalScore)
         scorePlaceHolderInScoreResultPage.hidden = false
         scoreResultPage.hidden = false
